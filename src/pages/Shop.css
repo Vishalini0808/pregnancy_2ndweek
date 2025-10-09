@@ -1,0 +1,241 @@
+.shop-page {
+  min-height: 100vh;
+  padding-top: 80px;
+}
+
+.shop-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.categories-filter {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.category-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 25px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.category-btn:hover {
+  border-color: #ff6bcd;
+  transform: translateY(-2px);
+}
+
+.category-btn.active {
+  background: linear-gradient(135deg, #ff6bcd, #6b8cff);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 5px 15px rgba(255, 107, 205, 0.3);
+}
+
+.category-icon {
+  font-size: 1.2rem;
+}
+
+.cart-summary {
+  background: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+  color: #ff6bcd;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.product-card {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e0e0e0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+.product-image {
+  background: linear-gradient(135deg, #fff5f7, #f0f4ff);
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+}
+
+.product-emoji {
+  font-size: 4rem;
+}
+
+.discount-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: linear-gradient(135deg, #ff6bcd, #ff3366);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.product-info {
+  padding: 1.5rem;
+}
+
+.product-name {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 0.5rem 0;
+}
+
+.product-description {
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.product-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.feature-tag {
+  background: rgba(255, 107, 205, 0.1);
+  color: #ff6bcd;
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.product-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.stars {
+  color: #ff9500;
+  font-weight: 600;
+}
+
+.reviews {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.product-pricing {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.current-price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ff6bcd;
+}
+
+.original-price {
+  font-size: 1rem;
+  color: #999;
+  text-decoration: line-through;
+}
+
+.add-to-cart-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #ff6bcd, #6b8cff);
+  color: white;
+  border: none;
+  padding: 1rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 107, 205, 0.3);
+}
+
+.shop-benefits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  background: white;
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.benefit-card {
+  text-align: center;
+}
+
+.benefit-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.benefit-card h4 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 0.5rem 0;
+}
+
+.benefit-card p {
+  color: #666;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .shop-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .categories-filter {
+    justify-content: center;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .shop-benefits {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 2rem 1.5rem;
+  }
+}
