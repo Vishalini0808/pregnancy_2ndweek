@@ -51,7 +51,7 @@ const VisionMission = () => {
           </div>
         </div>
 
-        <div className="feature-highlights">
+        {/* <div className="feature-highlights">
           <div className="feature-card">
             <span className="feature-icon">🔬</span>
             <h4>Evidence-Based Approach</h4>
@@ -75,7 +75,7 @@ const VisionMission = () => {
             <h4>Innovation Focused</h4>
             <p>Continuously improving our technology to provide smarter, more personalized experiences for mothers and families.</p>
           </div>
-        </div>
+        </div> */}
 
         {/* <div className="stats-section">
           <h3>Our Impact in Numbers</h3>

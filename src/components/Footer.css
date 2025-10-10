@@ -22,7 +22,7 @@
 
 .footer-logo .logo-icon {
   font-size: 2rem;
-  background: linear-gradient(135deg, #ff6bcd, #6b8cff);
+  /* background: linear-gradient(135deg, #ff6bcd, #6b8cff); */
   padding: 0.5rem;
   border-radius: 12px;
   display: flex;
@@ -127,7 +127,7 @@
 
 .footer-bottom-content {
   display: flex;
-  justify-content: space-between;
+  justify-content:center;
   align-items: center;
 }
 

@@ -55,6 +55,10 @@ const HowItWorks = () => {
           {/* <p className="cta-note">No credit card required • Free forever plan</p> */}
         </div>
       </div>
+
+      
+
+
     </section>
   );
 };

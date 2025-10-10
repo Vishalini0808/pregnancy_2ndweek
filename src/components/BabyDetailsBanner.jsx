@@ -12,93 +12,93 @@ const BabyDetailsBanner = () => {
         <div className="container">
           <div className="banner-content">
             <div className="banner-text">
-              <div className="banner-badge">
+              {/* <div className="banner-badge">
                 <span>✨ Personalized Baby Care</span>
-              </div>
+              </div> */}
               <h2>
                 Track Your Little One's 
                 <span className="gradient-text"> Amazing Journey</span>
               </h2>
-              <p className="banner-description">
+              {/* <p className="banner-description">
                 Get personalized development tracking, health monitoring, and expert tips 
                 tailored specifically for your baby's age and milestones.
-              </p>
+              </p> */}
               
-              <div className="features-list">
-                <div className="feature-item">
-                  <span className="feature-icon">📊</span>
-                  <span>Growth Tracking</span>
+              <div className="features-grid">
+                <div className="feature-card">
+                  {/* <div className="feature-icon">📊</div> */}
+                  <h4>Growth Tracking</h4>
+                  <p>Monitor weight, height, and development milestones</p>
                 </div>
-                <div className="feature-item">
-                  <span className="feature-icon">💖</span>
-                  <span>Health Monitoring</span>
+                <div className="feature-card">
+                  {/* <div className="feature-icon">💖</div> */}
+                  <h4>Health Monitoring</h4>
+                  <p>Track vaccinations, health checks, and wellbeing</p>
                 </div>
-                <div className="feature-item">
-                  <span className="feature-icon">🎯</span>
-                  <span>Personalized Tips</span>
+                <div className="feature-card">
+                  {/* <div className="feature-icon">🎯</div> */}
+                  <h4>Personalized Tips</h4>
+                  <p>Get advice tailored to your baby's specific needs</p>
                 </div>
-                <div className="feature-item">
-                  <span className="feature-icon">📅</span>
-                  <span>Milestone Alerts</span>
+                <div className="feature-card">
+                  {/* <div className="feature-icon">📅</div> */}
+                  <h4>Milestone Alerts</h4>
+                  <p>Never miss important developmental milestones</p>
                 </div>
               </div>
 
-              <button 
-                className="cta-btn primary large"
-                onClick={() => setIsFormOpen(true)}
-              >
-                👶 Give Your Baby Details
-              </button>
               
-              {/* <p className="cta-note">
-                Join 50,000+ parents tracking their baby's development
-              </p> */}
             </div>
 
             <div className="banner-visual">
-              <div className="animated-baby">
-                <div className="baby-face">
-                  <div className="eyes">
-                    <div className="eye left"></div>
-                    <div className="eye right"></div>
-                  </div>
-                  <div className="mouth"></div>
-                  <div className="cheeks">
-                    <div className="cheek left"></div>
-                    <div className="cheek right"></div>
+              <div className="baby-card">
+                <div className="baby-avatar">
+                  <div className="baby-face">
+                    <div className="eyes">
+                      <div className="eye left"></div>
+                      <div className="eye right"></div>
+                    </div>
+                    <div className="mouth"></div>
                   </div>
                 </div>
+                <h3>Your Baby's Journey</h3>
+                <p>Start tracking today for personalized insights</p>
+                
+                {/* <div className="progress-stats">
+                  <div className="stat">
+                    <span className="stat-value">0%</span>
+                    <span className="stat-label">Growth</span>
+                  </div>
+                  <div className="stat">
+                    <span className="stat-value">0%</span>
+                    <span className="stat-label">Milestones</span>
+                  </div>
+                </div>
+                 */}
+               <div className="cta-button-group">
+                <button 
+                  className="cta-btn primary"
+                  onClick={() => setIsFormOpen(true)}
+                >
+                  👶 Give Your Baby Details
+                </button>
+              </div>
               </div>
               
-              <div className="floating-shapes">
+              <div className="floating-elements">
                 {babyShapes.map((shape, index) => (
                   <div 
                     key={index}
-                    className="floating-shape"
+                    className="floating-element"
                     style={{
-                      animationDelay: `${index * 0.5}s`,
-                      left: `${20 + (index * 10)}%`,
-                      top: `${10 + (index * 8)}%`
+                      animationDelay: `${index * 0.7}s`,
+                      left: `${15 + (index * 10)}%`,
+                      top: `${5 + (index * 12)}%`
                     }}
                   >
                     {shape}
                   </div>
                 ))}
-              </div>
-              
-              <div className="growth-chart">
-                <div className="chart-bar" style={{ height: '60%' }}>
-                  <span>Weight</span>
-                </div>
-                <div className="chart-bar" style={{ height: '80%' }}>
-                  <span>Height</span>
-                </div>
-                <div className="chart-bar" style={{ height: '70%' }}>
-                  <span>Milestones</span>
-                </div>
-                <div className="chart-bar" style={{ height: '90%' }}>
-                  <span>Development</span>
-                </div>
               </div>
             </div>
           </div>
@@ -116,8 +116,8 @@ const BabyDetailsBanner = () => {
             
             <form className="baby-details-form">
               <div className="form-section">
-                <h4>Basic Information</h4>
-                <div className="form-row">
+                <h4>👤 Basic Information</h4>
+                <div className="form-grid">
                   <div className="form-group">
                     <label>Baby's Name</label>
                     <input type="text" placeholder="Enter baby's name" />
@@ -126,20 +126,17 @@ const BabyDetailsBanner = () => {
                     <label>Date of Birth</label>
                     <input type="date" />
                   </div>
-                </div>
-                
-                <div className="form-row">
                   <div className="form-group">
                     <label>Gender</label>
-                    <div className="radio-group">
-                      <label className="radio-option">
-                        <input type="radio" name="gender" value="boy" />
-                        <span>👦 Boy</span>
-                      </label>
-                      <label className="radio-option">
-                        <input type="radio" name="gender" value="girl" />
-                        <span>👧 Girl</span>
-                      </label>
+                    <div className="option-group">
+                      <div className="option-item">
+                        <input type="radio" name="gender" value="boy" id="boy" />
+                        <label htmlFor="boy">👦 Boy</label>
+                      </div>
+                      <div className="option-item">
+                        <input type="radio" name="gender" value="girl" id="girl" />
+                        <label htmlFor="girl">👧 Girl</label>
+                      </div>
                     </div>
                   </div>
                   <div className="form-group">
@@ -150,8 +147,8 @@ const BabyDetailsBanner = () => {
               </div>
 
               <div className="form-section">
-                <h4>Current Details</h4>
-                <div className="form-row">
+                <h4>📏 Current Details</h4>
+                <div className="form-grid">
                   <div className="form-group">
                     <label>Current Weight (kg)</label>
                     <input type="number" step="0.1" placeholder="Current weight" />
@@ -164,22 +161,22 @@ const BabyDetailsBanner = () => {
               </div>
 
               <div className="form-section">
-                <h4>Feeding & Health</h4>
+                <h4>🍼 Feeding & Health</h4>
                 <div className="form-group">
                   <label>Feeding Type</label>
-                  <div className="checkbox-group">
-                    <label className="checkbox-option">
-                      <input type="checkbox" name="feeding" value="breast" />
-                      <span>🤱 Breastfeeding</span>
-                    </label>
-                    <label className="checkbox-option">
-                      <input type="checkbox" name="feeding" value="formula" />
-                      <span>🍼 Formula</span>
-                    </label>
-                    <label className="checkbox-option">
-                      <input type="checkbox" name="feeding" value="solid" />
-                      <span>🥣 Solid Foods</span>
-                    </label>
+                  <div className="option-group">
+                    <div className="option-item">
+                      <input type="checkbox" name="feeding" value="breast" id="breast" />
+                      <label htmlFor="breast">🤱 Breastfeeding</label>
+                    </div>
+                    <div className="option-item">
+                      <input type="checkbox" name="feeding" value="formula" id="formula" />
+                      <label htmlFor="formula">🍼 Formula</label>
+                    </div>
+                    <div className="option-item">
+                      <input type="checkbox" name="feeding" value="solid" id="solid" />
+                      <label htmlFor="solid">🥣 Solid Foods</label>
+                    </div>
                   </div>
                 </div>
                 

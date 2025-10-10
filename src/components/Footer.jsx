@@ -8,7 +8,11 @@ const Footer = () => {
         <div className="footer-content">
           <div className="footer-section">
             <div className="footer-logo">
-              <span className="logo-icon">👶</span>
+              <span className="logo-icon"><img 
+          src="aararo_logo.png" 
+          alt="ஆராரோ 360°" 
+          className="logo-image"
+        /></span>
               <div className="logo-text">
                 <span className="brand-name">ஆராரோ 360° </span>
                 {/* <span className="brand-subtitle">360°</span> */}
