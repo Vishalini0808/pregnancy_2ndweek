@@ -1,7 +1,7 @@
 /* HeroSection.css */
 .hero-section {
   padding: 6rem 0 4rem 0; /* Added top padding for header */
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  /* background: linear-gradient(135deg, #f8f9ff 0%, #fff5f8 50%, #f5f8ff 100%); */
   margin-top: 70px; /* Match header height */
   min-height: calc(100vh - 70px); /* Ensure full viewport height */
   display: flex;

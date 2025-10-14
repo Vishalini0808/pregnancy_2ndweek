@@ -1,124 +1,41 @@
-// components/BabyRegistryAd.jsx
-import React, { useState, useEffect } from 'react';
-// import './BabyRegistryAd.css';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import './BabyRegistryAd.css';
 
 const BabyRegistryAd = () => {
-  const [isVisible, setIsVisible] = useState(true);
-  const [isExpanded, setIsExpanded] = useState(false);
+  const navigate = useNavigate();
 
-  // Auto-hide after 10 seconds
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(false);
-    }, 10000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  const handleClose = () => {
-    setIsVisible(false);
+  const handleAdClick = () => {
+    navigate('/signup');
   };
 
-  const handleStartRegistry = () => {
-    // Navigate to registry page or open modal
-    console.log('Starting baby registry...');
-    // You can replace this with your actual navigation logic
-    window.location.href = '/baby-registry';
+  const handleCtaClick = (e) => {
+    e.stopPropagation();
+    navigate('/signup');
   };
-
-  const handleLearnMore = () => {
-    setIsExpanded(!isExpanded);
-  };
-
-  if (!isVisible) return null;
 
   return (
-    <div className="baby-registry-ad">
-      <div className="ad-container">
-        {/* Close Button */}
-        <button className="ad-close-btn" onClick={handleClose} aria-label="Close ad">
-          ×
+    <div className="ad-container" onClick={handleAdClick}>
+      <div className="ad-label">ADVERTISEMENT</div>
+      
+      <div className="ad-content">
+        <img 
+          src="/path-to-your-image/Screenshot 2025-10-10 160552.png" 
+          alt="Build your ultimate baby registry with Aarara360"
+          className="ad-image"
+        />
+        
+        <div className="ad-text">
+          <h2 className="ad-title">Build your ultimate baby registry with Aarara360</h2>
+          <p className="ad-description">
+            Create the perfect baby registry with all your needs in one place. 
+            From nursery essentials to baby gear, we've got you covered.
+          </p>
+        </div>
+        
+        <button className="cta-button" onClick={handleCtaClick}>
+          Start Your Registry Now
         </button>
-
-        {/* Ad Content */}
-        <div className="ad-content">
-          <div className="ad-badge">ADVERTISEMENT</div>
-          
-          <div className="ad-main">
-            <div className="ad-text">
-              <h3 className="ad-title">
-                Build your ultimate baby
-                <span className="ad-highlight"> registry</span>
-              </h3>
-              <p className="ad-subtitle">with ஆராரோ 360°</p>
-            </div>
-
-            <div className="ad-actions">
-              <button 
-                className="ad-primary-btn"
-                onClick={handleStartRegistry}
-              >
-                Start Your Registry
-              </button>
-              
-              <button 
-                className="ad-secondary-btn"
-                onClick={handleLearnMore}
-              >
-                {isExpanded ? 'Show Less' : 'Learn More'}
-              </button>
-            </div>
-          </div>
-
-          {/* Expanded Content */}
-          {isExpanded && (
-            <div className="ad-expanded-content">
-              <div className="features-grid">
-                <div className="feature-item">
-                  <div className="feature-icon">🎁</div>
-                  <h4>Curated Products</h4>
-                  <p>Expert-picked baby essentials from trusted brands</p>
-                </div>
-                
-                <div className="feature-item">
-                  <div className="feature-icon">📱</div>
-                  <h4>Mobile Management</h4>
-                  <p>Manage your registry anytime, anywhere</p>
-                </div>
-                
-                <div className="feature-item">
-                  <div className="feature-icon">👨‍👩‍👧‍👦</div>
-                  <h4>Share Easily</h4>
-                  <p>Share with family and friends with one click</p>
-                </div>
-                
-                <div className="feature-item">
-                  <div className="feature-icon">🎉</div>
-                  <h4>Welcome Box</h4>
-                  <p>Free welcome box with samples and goodies</p>
-                </div>
-              </div>
-              
-              <div className="ad-benefits">
-                <h4>Why choose ஆராரோ 360° Registry?</h4>
-                <ul>
-                  <li>✓ Complete checklist for baby essentials</li>
-                  <li>✓ Price comparison across stores</li>
-                  <li>✓ Group gifting for big-ticket items</li>
-                  <li>✓ 10% completion discount</li>
-                  <li>✓ Free shipping on orders over ₹999</li>
-                </ul>
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/* Decorative Elements */}
-        <div className="ad-decoration">
-          <div className="decoration-item">🍼</div>
-          <div className="decoration-item">🧸</div>
-          <div className="decoration-item">👶</div>
-        </div>
       </div>
     </div>
   );

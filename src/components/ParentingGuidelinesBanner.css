@@ -1,7 +1,7 @@
 Parenting Guidelines Banner
 .parenting-guidelines {
   padding: 4rem 0;
-  background: linear-gradient(135deg, #f8f9ff 0%, #fff5f8 50%, #f5f8ff 100%);
+  /* background: linear-gradient(135deg, #f8f9ff 0%, #fff5f8 50%, #f5f8ff 100%); */
   position: relative;
   overflow: hidden;
 }
@@ -120,6 +120,25 @@ Parenting Guidelines Banner
   font-size: 0.8rem;
   font-weight: 600;
   border: 1px solid rgba(255, 107, 205, 0.3);
+}
+
+/* Add to ParentingGuidelinesBanner.css */
+.card-cta {
+  /* Your existing styles */
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  /* Ensure it looks the same as a button */
+}
+
+.guideline-card {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.guideline-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 .card-icon {

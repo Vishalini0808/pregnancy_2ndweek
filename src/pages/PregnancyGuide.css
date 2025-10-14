@@ -1,0 +1,437 @@
+.pregnancy-guide {
+  margin-top: 50px; 
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ffd6e7 0%, #c2e9fb 100%);
+  padding: 40px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.guide-container {
+  display: flex;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+  overflow: hidden;
+  min-height: 80vh;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  width: 280px;
+  background: linear-gradient(180deg, #ffb6c1 0%, #87ceeb 100%);
+  padding: 30px 20px;
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.sidebar h2 {
+  color: #2c3e50;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  color: #2c3e50;
+  text-align: left;
+}
+
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.95);
+  transform: translateX(5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.nav-item.active {
+  background: linear-gradient(135deg, #ff6b9d 0%, #4facfe 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+}
+
+.nav-icon {
+  margin-right: 12px;
+  font-size: 1.2rem;
+}
+
+/* Main Content Styles */
+.main-content {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+.main-content h2 {
+  color: #2c3e50;
+  margin-bottom: 30px;
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+/* Week Guide Styles */
+.week-selector {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.week-btn {
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.week-btn:hover {
+  border-color: #ff6b9d;
+  transform: translateY(-2px);
+}
+
+.week-btn.active {
+  background: linear-gradient(135deg, #ff6b9d 0%, #4facfe 100%);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+}
+
+.week-detail-card {
+  background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.week-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.week-icon {
+  font-size: 2.5rem;
+  margin-right: 15px;
+}
+
+.week-header h3 {
+  color: #2c3e50;
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+.week-content {
+  display: grid;
+  gap: 25px;
+}
+
+.info-section {
+  background: rgba(255, 255, 255, 0.7);
+  padding: 20px;
+  border-radius: 12px;
+  border-left: 4px solid #ff6b9d;
+}
+
+.info-section h4 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.info-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.info-section li {
+  padding: 5px 0;
+  padding-left: 20px;
+  position: relative;
+}
+
+.info-section li:before {
+  content: "✓";
+  color: #4facfe;
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+/* Timeline Styles */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.timeline-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 12px;
+  border-left: 4px solid #4facfe;
+}
+
+.timeline-marker {
+  background: linear-gradient(135deg, #ff6b9d 0%, #4facfe 100%);
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.timeline-content h4 {
+  color: #2c3e50;
+  margin-bottom: 8px;
+}
+
+/* Trimester Cards */
+.trimester-cards {
+  display: grid;
+  gap: 25px;
+}
+
+.trimester-card {
+  background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.trimester-card h3 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+}
+
+.trimester-section {
+  margin-bottom: 20px;
+}
+
+.trimester-section h4 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.trimester-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.trimester-section li {
+  padding: 5px 0;
+  padding-left: 20px;
+  position: relative;
+}
+
+.trimester-section li:before {
+  content: "•";
+  color: #ff6b9d;
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+/* Nutrition Cards */
+.nutrition-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.nutrition-card {
+  background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+  padding: 25px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.nutrition-card:hover {
+  transform: translateY(-5px);
+}
+
+.nutrition-icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.nutrition-card h3 {
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+.nutrition-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.nutrition-card li {
+  padding: 5px 0;
+  color: #555;
+}
+
+.hydration-reminder {
+  background: linear-gradient(135deg, #e3f2fd 0%, #fce4ec 100%);
+  padding: 25px;
+  border-radius: 16px;
+  text-align: center;
+}
+
+.water-cups {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+.water-cup {
+  font-size: 2rem;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.water-cup:hover {
+  opacity: 1;
+}
+
+/* Exercise Cards */
+/* .exercise-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.exercise-card {
+  background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+  padding: 25px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.exercise-card:hover {
+  transform: translateY(-5px);
+}
+
+.exercise-image {
+  font-size: 4rem;
+  margin-bottom: 15px;
+}
+
+.exercise-card h3 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.exercise-card p {
+  color: #666;
+  margin-bottom: 15px;
+} */
+
+.trimester-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #ff6b9d 0%, #4facfe 100%);
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  margin-bottom: 15px;
+}
+
+.expand-btn {
+  background: transparent;
+  border: 2px solid #4facfe;
+  color: #4facfe;
+  padding: 8px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.expand-btn:hover {
+  background: #4facfe;
+  color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .guide-container {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    padding: 20px;
+  }
+  
+  .main-content {
+    padding: 20px;
+  }
+  
+  .week-selector {
+    justify-content: center;
+  }
+  
+  .nutrition-cards,
+  .exercise-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .timeline-item {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .pregnancy-guide {
+    padding: 10px;
+  }
+  
+  .week-btn {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+  
+  .nav-item {
+    padding: 12px 15px;
+    font-size: 0.9rem;
+  }
+}

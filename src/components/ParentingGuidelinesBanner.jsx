@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './ParentingGuidelinesBanner.css';
 
 const ParentingGuidelinesBanner = () => {
+  const navigate = useNavigate();
+
   const guidelineCards = [
     {
       id: 1,
@@ -24,8 +27,8 @@ const ParentingGuidelinesBanner = () => {
     {
       id: 3,
       icon: '📊',
-      title: 'My Baby Process',
-      description: 'Daily baby care routines and mother health monitoring',
+      title: 'Government Schemes',
+      description: 'Explore government schemes that support maternal health and early childhood care',
       features: ['Baby cleaning', 'Feeding schedule', 'Mother health'],
       gradient: 'process-gradient',
       comingSoon: false
@@ -51,20 +54,48 @@ const ParentingGuidelinesBanner = () => {
     {
       id: 6,
       icon: '👨‍👩‍👧‍👦',
-      title: 'Community Support',
+      title: 'Baby Sitting Assistance',
       description: 'Connect with other parents and experts',
-      features: ['Q&A forum', 'Expert sessions', 'Parent stories'],
-      gradient: 'community-gradient',
-      comingSoon: true
+      features: ['Baby Care', 'Experienced Persons', 'Trustable'],
+      gradient: 'shop-gradient',
+      comingSoon: false
     }
   ];
+
+  const handleCardClick = (cardId) => {
+    if (cardId === 1) {
+      navigate('/pregnancy-guide');
+    }
+
+    else if ( cardId === 2) {
+      navigate('/monitoring');
+    }
+
+    else if ( cardId === 3) {
+      navigate('/schemes');
+    }
+
+    else if ( cardId === 4) {
+      navigate('/elderlyadvice');
+    }
+    
+    else if ( cardId === 5) {
+      navigate('/shop');
+    }
+
+    else if ( cardId === 6) {
+      navigate('/babysittingpage');
+    }
+    
+
+    // Add navigation for other cards as needed
+  };
 
   return (
     <section className="parenting-guidelines">
       <div className="container">
         {/* Header Section */}
         <div className="guidelines-header">
-         
           <h2>Your Complete Parenting Journey Guide</h2>
           <p>From pregnancy to toddler years - everything you need in one place</p>
         </div>
@@ -87,88 +118,24 @@ const ParentingGuidelinesBanner = () => {
                     <span key={index} className="feature-tag">✓ {feature}</span>
                   ))}
                 </div>
-                <button className="card-cta">
-                  Explore Now →
+                <button 
+                  className="card-cta"
+                  onClick={() => handleCardClick(card.id)}
+                  disabled={card.comingSoon}
+                >
+                  {card.comingSoon ? 'Coming Soon' : 'Explore Now →'}
                 </button>
               </div>
             ))}
           </div>
-
-          
-          {/* <div className="advertisement-section"> */}
-            {/* <div className="ad-card premium-ad">
-              <div className="ad-badge">Premium</div>
-              <div className="ad-content">
-                <h4>Upgrade to Premium</h4>
-                <p>Get personalized doctor consultations and advanced tracking features</p>
-                <div className="premium-features">
-                  <div className="premium-feature">
-                    <span className="feature-icon">👨‍⚕️</span>
-                    <span>Doctor Video Consultations</span>
-                  </div>
-                  <div className="premium-feature">
-                    <span className="feature-icon">📈</span>
-                    <span>Advanced Growth Analytics</span>
-                  </div>
-                  <div className="premium-feature">
-                    <span className="feature-icon">🔔</span>
-                    <span>Priority Support</span>
-                  </div>
-                </div>
-                <button className="premium-cta">
-                  Try 7 Days Free
-                </button>
-                <div className="ad-footer">
-                  <span>₹299/month after trial</span>
-                </div>
-              </div>
-            </div> */}
-
-            {/* <div className="ad-card download-ad">
-              <div className="ad-content">
-                <div className="app-icon">📱</div>
-                <h4>Get Our Mobile App</h4>
-                <p>Track your parenting journey on the go</p>
-                <div className="download-buttons">
-                  <button className="download-btn play-store">
-                    <span className="store-icon">📥</span>
-                    <div className="store-text">
-                      <span className="get-on">GET IT ON</span>
-                      <span className="store-name">Google Play</span>
-                    </div>
-                  </button>
-                  <button className="download-btn app-store">
-                    <span className="store-icon">📥</span>
-                    <div className="store-text">
-                      <span className="get-on">Download on the</span>
-                      <span className="store-name">App Store</span>
-                    </div>
-                  </button>
-                </div>
-              </div>
-            </div> */}
-          {/* </div> */}
         </div>
 
-        {/* Bottom CTA */}
-         {/* <div className="ad-badge">ADVERTISEMENT</div>
-        <div className="bottom-cta">
-           
-          <div className="cta-content">
-            <h3> Build your complete pregnancy & parenting journey with Aararo 360 </h3>
-            <p>Start your stress-free parenting journey with expert guidance</p>
-            <button className="primary-cta">
-              Start Your Free Journey
-            </button>
-          </div>
-        </div> */}
-
-        <div>
+        {/* <div>
           <img 
-          src='advertisement2.png'
-          alt='Advertisement-banner'/>
-        </div>
-
+            src='advertisement2.png'
+            alt='Advertisement-banner'
+          />
+        </div> */}
       </div>
     </section>
   );

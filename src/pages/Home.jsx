@@ -8,8 +8,9 @@ import HowItWorks from '../components/HowItWorks';
 import ElderlyAdvice from '../components/ElderlyAdvice';
 import CommunityCTA from '../components/CommunityCTA';
 import ParentingGuidelinesBanner from '../components/ParentingGuidelinesBanner';
-import BabyRegistryAd from '../components/BabyRegistryAd';
+// import BabyRegistryAd from '../components/BabyRegistryAd';
 import Advertisement from '../components/Advertisement';
+import ImageCarousel from '../components/ImageCarousel';
 
 const Home = () => {
   return (
@@ -17,8 +18,10 @@ const Home = () => {
       <HeroSection />
       <BabyDetailsBanner />
       <ParentingGuidelinesBanner/>
-    
+      <ImageCarousel/>
       {/* <BabyRegistryAd/> */}
+    
+      
       <VisionMission />
       {/* <FeaturesSection /> */}
       {/* <HowItWorks /> */}

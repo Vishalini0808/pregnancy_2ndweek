@@ -12,9 +12,7 @@ const BabyDetailsBanner = () => {
         <div className="container">
           <div className="banner-content">
             <div className="banner-text">
-              {/* <div className="banner-badge">
-                <span>✨ Personalized Baby Care</span>
-              </div> */}
+             
               <h2>
                 Track Your Little One's 
                 <span className="gradient-text"> Amazing Journey</span>
