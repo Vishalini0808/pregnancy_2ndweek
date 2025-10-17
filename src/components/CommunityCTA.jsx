@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import './CommunityCTA.css';
 
 const CommunityCTA = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -13,17 +12,15 @@ const CommunityCTA = () => {
       description: "Connect with 10K+ parents and 500+ healthcare experts for real-time support and advice.",
       stats: "10K+ Active Members",
       buttonText: "Join Discussion",
-      accentColor:"#6b8cff" 
     },
     {
       id: 2,
       type: "Products",
-      icon: "🛍️",
+      icon: "🛍",
       title: "Baby & Mother Products",
       description: "Curated essentials and trusted products recommended by pediatricians and experienced parents.",
       stats: "500+ Products",
       buttonText: "Explore Shop",
-      accentColor: "#6b8cff"
     },
     {
       id: 3,
@@ -33,7 +30,6 @@ const CommunityCTA = () => {
       description: "Complete week-by-week tracking with expert guidance and personalized health monitoring.",
       stats: "40 Week Tracker",
       buttonText: "Start Journey",
-      accentColor: "#6b8cff"
     },
     {
       id: 4,
@@ -43,7 +39,6 @@ const CommunityCTA = () => {
       description: "Time-tested advice from elders combined with modern pediatric recommendations.",
       stats: "Cultural Insights",
       buttonText: "Learn More",
-      accentColor: "#6b8cff"
     }
   ];
 
@@ -67,99 +62,126 @@ const CommunityCTA = () => {
   };
 
   return (
-    <div className="community-cta-professional">
-      <div className="professional-container">
+    <section className="bg-gradient-to-br from-blue-50 via-white to-purple-50 py-16 lg:py-24 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent"></div>
+      
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        
         {/* Header */}
-        {/* <div className="section-header">
-          <h2>Your Complete Parenting Companion</h2>
-          <p>Access all resources and support for your parenting journey in one place</p>
-        </div> */}
+        <div className="text-center mb-12">
+          {/* <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+            Your Complete Parenting Companion
+          </h2> */}
+          <p className="text-lg text-pink-600 max-w-2xl mx-auto">
+            Access all resources and support for your parenting journey in one place
+          </p>
+        </div>
 
         {/* Carousel Container */}
-        <div className="professional-carousel">
+        <div className="relative">
           {/* Navigation Arrows */}
-          <button className="carousel-arrow prev" onClick={prevSlide}>
+          <button 
+            onClick={prevSlide}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 bg-white border border-gray-200 rounded-xl shadow-lg flex items-center justify-center text-gray-600 hover:text-gray-900 hover:shadow-xl transition-all duration-300 hover:-translate-x-1"
+          >
             ‹
           </button>
 
-          {/* Carousel Track */}
-          <div className="carousel-wrapper">
+          <button 
+            onClick={nextSlide}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 bg-white border border-gray-200 rounded-xl shadow-lg flex items-center justify-center text-gray-600 hover:text-gray-900 hover:shadow-xl transition-all duration-300 hover:translate-x-1"
+          >
+            ›
+          </button>
+
+          {/* Carousel */}
+          <div className="overflow-hidden">
             <div 
-              className="carousel-track"
+              className="flex transition-transform duration-500 ease-out"
               style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
-              {communityCards.map((card, index) => (
-                <div key={card.id} className="carousel-slide">
-                  <div className="professional-card">
-                    <div className="card-header">
-                      <div className="card-type" style={{ color: card.accentColor }}>
+              {communityCards.map((card) => (
+                <div key={card.id} className="w-full flex-shrink-0 px-4">
+                  <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-500 group">
+                    <div className="flex items-start justify-between mb-6">
+                      <span className="inline-flex items-center px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-sm font-medium">
                         {card.type}
-                      </div>
-                      <div className="card-icon" style={{ backgroundColor: `${card.accentColor}15` }}>
+                      </span>
+                      <div className="w-14 h-14 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform duration-300">
                         {card.icon}
                       </div>
                     </div>
-                    
-                    <h3 className="card-title">{card.title}</h3>
-                    <p className="card-description">{card.description}</p>
-                    
-                    <div className="card-stats">
-                      <span className="stat-badge">{card.stats}</span>
-                    </div>
 
-                    <button 
-                      className="professional-cta"
-                      style={{ 
-                        backgroundColor: card.accentColor,
-                        boxShadow: `0 4px 15px ${card.accentColor}40`
-                      }}
-                    >
-                      {card.buttonText}
-                    </button>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                      {card.title}
+                    </h3>
+                    
+                    <p className="text-gray-600 leading-relaxed mb-6">
+                      {card.description}
+                    </p>
+
+                    <div className="flex items-center justify-between">
+                      <span className="inline-flex items-center px-4 py-2 bg-gray-50 border border-gray-200 rounded-full text-sm font-medium text-gray-700">
+                        {card.stats}
+                      </span>
+                      
+                      <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300">
+                        {card.buttonText}
+                      </button>
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
           </div>
-
-          <button className="carousel-arrow next" onClick={nextSlide}>
-            ›
-          </button>
         </div>
 
         {/* Indicators */}
-        <div className="carousel-indicators">
+        <div className="flex justify-center space-x-2 mt-8">
           {communityCards.map((_, index) => (
             <button
               key={index}
-              className={`indicator ${index === currentIndex ? 'active' : ''}`}
               onClick={() => goToSlide(index)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                index === currentIndex 
+                  ? 'bg-blue-600 w-8' 
+                  : 'bg-gray-300 hover:bg-gray-400'
+              }`}
             />
           ))}
         </div>
 
-        {/* Quick Access */}
-        {/* <div className="quick-access">
-          <div className="access-grid">
+        {/* Quick Access Grid */}
+        {/* <div className="mt-12 pt-8 border-t border-gray-200">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {communityCards.map((card, index) => (
               <button
                 key={card.id}
-                className={`access-item ${index === currentIndex ? 'active' : ''}`}
                 onClick={() => goToSlide(index)}
-                style={{ 
-                  borderColor: index === currentIndex ? card.accentColor : 'transparent'
-                }}
+                className={`flex flex-col items-center p-4 rounded-xl border-2 transition-all duration-300 ${
+                  index === currentIndex
+                    ? 'border-blue-500 bg-blue-50 shadow-sm'
+                    : 'border-transparent bg-white hover:bg-gray-50 hover:shadow-sm'
+                }`}
               >
-                <span className="access-icon" style={{ color: card.accentColor }}>
+                <div className={`text-2xl mb-2 transition-transform duration-300 ${
+                  index === currentIndex ? 'scale-110' : ''
+                }`}>
                   {card.icon}
+                </div>
+                <span className={`text-sm font-medium ${
+                  index === currentIndex ? 'text-blue-600' : 'text-gray-600'
+                }`}>
+                  {card.type}
                 </span>
-                <span className="access-label">{card.type}</span>
               </button>
             ))}
           </div>
         </div> */}
+
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -1,103 +1,93 @@
 import React from 'react';
-import './VisionMission.css';
 
 const VisionMission = () => {
   return (
-    <section className="vision-mission-section">
-      <div className="decoration decoration-1">👶</div>
-      <div className="decoration decoration-2">🌟</div>
-      
-      <div className="vision-mission-container">
-        <div className="section-header">
-          <h2>Our Purpose & Promise</h2>
-          <p>Driving positive change in maternal and child healthcare through innovation and compassion</p>
+    <section className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/30 py-20 flex items-center">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        
+        {/* Header Section */}
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center justify-center w-20 h-20 ">
+            <span className="text-3xl text-white"></span>
+          </div>
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+            Our Vision & Mission
+          </h1>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Transforming maternal and child healthcare through technology and compassion
+          </p>
         </div>
 
-        <div className="vision-mission-grid">
-          <div className="vision-content">
-            <div className="content-header">
-              <div className="icon-wrapper">
-                <span>👁️</span>
+        {/* Vision Section */}
+        <div className="grid lg:grid-cols-12 gap-8 mb-16">
+          <div className="lg:col-span-4">
+            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm h-full">
+              <div className="flex items-center mb-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-500/10 to-blue-600/20 rounded-2xl flex items-center justify-center mr-4">
+                  <span className="text-3xl text-blue-600">👁</span>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-gray-900">Our Vision</h3>
+                  <div className="w-12 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mt-2"></div>
+                </div>
               </div>
-              <h3>Our Vision</h3>
+              <p className="text-gray-700 leading-relaxed">
+                A future where technology and healthcare unite for better outcomes for mothers and children.
+              </p>
             </div>
-            <p>
-              To revolutionize maternal and child healthcare in India by creating an ecosystem where 
-              every mother receives <span className="gradient-text-accent">personalized, evidence-based guidance</span> and emotional support 
-              throughout her journey from pregnancy to early childhood.
-            </p>
-            <p>
-              We envision a future where technology and compassion work together to eliminate 
-              healthcare disparities and ensure every child gets the best possible start in life.
-            </p>
           </div>
-
-          <div className="mission-content">
-            <div className="content-header">
-              <div className="icon-wrapper">
-                <span>🎯</span>
+          
+          <div className="lg:col-span-8">
+            <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-8 border border-blue-100">
+              <div className="space-y-4">
+                <p className="text-lg text-gray-800 leading-relaxed">
+                  We envision healthcare where every mother receives <span className="font-semibold text-blue-600">personalized guidance</span> 
+                  and emotional support from pregnancy to early childhood.
+                </p>
+                <p className="text-lg text-gray-800 leading-relaxed">
+                  Where <span className="font-semibold text-purple-600">technology eliminates disparities</span> and ensures every child gets 
+                  the best start in life, accessible to all families across India.
+                </p>
               </div>
-              <h3>Our Mission</h3>
             </div>
-            <p>
-              To empower Indian mothers with <span className="gradient-text-accent">accessible, reliable, and comprehensive</span> digital 
-              healthcare solutions that simplify pregnancy tracking, child development monitoring, 
-              and provide instant access to expert medical guidance.
-            </p>
-            <p>
-              We're committed to bridging the gap between traditional healthcare and modern 
-              technology, making quality maternal and child healthcare available to every family.
-            </p>
           </div>
         </div>
 
-        {/* <div className="feature-highlights">
-          <div className="feature-card">
-            <span className="feature-icon">🔬</span>
-            <h4>Evidence-Based Approach</h4>
-            <p>All our content and recommendations are backed by medical research and developed in consultation with healthcare professionals.</p>
+        {/* Mission Section */}
+        <div className="grid lg:grid-cols-12 gap-8 mb-16">
+          <div className="lg:col-span-4 lg:order-2">
+            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm h-full">
+              <div className="flex items-center mb-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-purple-500/10 to-purple-600/20 rounded-2xl flex items-center justify-center mr-4">
+                  <span className="text-3xl text-purple-600">🎯</span>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-gray-900">Our Mission</h3>
+                  <div className="w-12 h-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mt-2"></div>
+                </div>
+              </div>
+              <p className="text-gray-700 leading-relaxed">
+                Taking actionable steps to turn our vision into reality for families across India.
+              </p>
+            </div>
           </div>
           
-          <div className="feature-card">
-            <span className="feature-icon">🤝</span>
-            <h4>Community Driven</h4>
-            <p>Built by parents, for parents. Our platform evolves based on real user experiences and feedback from our growing community.</p>
+          <div className="lg:col-span-8 lg:order-1">
+            <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 border border-purple-100">
+              <div className="space-y-4">
+                <p className="text-lg text-gray-800 leading-relaxed">
+                  To <span className="font-semibold text-purple-600">empower Indian mothers</span> with accessible digital healthcare 
+                  for pregnancy tracking and child development.
+                </p>
+                <p className="text-lg text-gray-800 leading-relaxed">
+                  We <span className="font-semibold text-pink-600">bridge traditional healthcare with modern technology</span>, 
+                  making quality care available to every family with medical accuracy and support.
+                </p>
+              </div>
+            </div>
           </div>
-          
-          <div className="feature-card">
-            <span className="feature-icon">🌍</span>
-            <h4>Accessible to All</h4>
-            <p>We believe quality healthcare guidance should be available to every family, regardless of location or economic background.</p>
-          </div>
-          
-          <div className="feature-card">
-            <span className="feature-icon">💡</span>
-            <h4>Innovation Focused</h4>
-            <p>Continuously improving our technology to provide smarter, more personalized experiences for mothers and families.</p>
-          </div>
-        </div> */}
+        </div>
 
-        {/* <div className="stats-section">
-          <h3>Our Impact in Numbers</h3>
-          <div className="stats-grid">
-            <div className="stat-item">
-              <div className="stat-number">50+</div>
-              <div className="stat-label">Mothers Supported</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-number">50+</div>
-              <div className="stat-label">Articles Read</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-number">24/7</div>
-              <div className="stat-label">Support Available</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-number">98%</div>
-              <div className="stat-label">Satisfaction Rate</div>
-            </div>
-          </div>
-        </div> */}
       </div>
     </section>
   );

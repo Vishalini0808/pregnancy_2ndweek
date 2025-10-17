@@ -8,18 +8,18 @@ import Vaccinations from './pages/Vaccinations';
 import FathersRole from './pages/FathersRole';
 import Shop from './pages/Shop';
 import ChildGrowth from './pages/ChildGrowth';
-import Hospitals from './pages/Hospitals';
 import Nutrition from './pages/Nutrition';
 import Premium from './pages/Premium';
 import Community from './pages/Community';
-import './App.css';
-import ElderlyAdvice from './components/ElderlyAdvice';
-import Monitoring from './pages/Monitoring';
+import './index.css';
+// import Monitoring from './pages/Monitoring';
 import PregnancyGuide from './pages/PregnancyGuide';
 import BabysittingPage from './pages/BabysittingPage';
 // import Pregnancy from './pages/Pregnancy';
 import SignUp from './pages/Auth/SignUp';
 import SignIn from './pages/Auth/SignIn';
+import Layout from './components/Layout';
+import ForgotPassword from './pages/Auth/ForgotPassword';
 import SettingsLayout from './pages/Settings/SettingsLayout';
 import ProfileInfo from './pages/Settings/ProfileInfo';
 import PremiumMembership from './pages/Settings/PremiumMembership';
@@ -27,18 +27,91 @@ import PremiumMembership from './pages/Settings/PremiumMembership';
 import About from './pages/Settings/About';
 // Options page will be created under settings
 import Options from './pages/Settings/Options';
+import BabyCareHub from './pages/BabyCareHub';
+import { HospitalsHomePage } from './components/HospitalsHomePage';
+import { HospitalsPage } from './components/HospitalsPage';
+import { PlaceholderPage } from './components/PlaceholderPage';
+import BabyTrackingPage from './pages/BabyTrackingPage';
+import BabyCard from './pages/BabyCard';
+
+
+
+
+// Protected Route Component
+const ProtectedRoute = ({ children }) => {
+  const isLoggedIn = localStorage.getItem('aararo_user') !== null;
+  return isLoggedIn ? children : <Navigate to="/signin" />;
+};
+
+// Public Route Component (redirect to home if already logged in)
+const PublicRoute = ({ children }) => {
+  const isLoggedIn = localStorage.getItem('aararo_user') !== null;
+  return !isLoggedIn ? children : <Navigate to="/" />;
+};
+
+// Layout Component for pages that need Header & Footer
+const AppLayout = ({ children }) => {
+  return (
+    <>
+      <Header />
+      <main>{children}</main>
+      <Footer />
+    </>
+  );
+};
+
 
 
 function App() {
   return (
     
       <div className="App">
-        <Header />
+        {/* <Header /> */}
         <main>
+
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/signin" element={<SignIn />} />
+
+            <Route 
+              path="/signup" element={
+              <PublicRoute>
+              <SignUp />
+              </PublicRoute>
+            } 
+            />
+
+            <Route 
+              path="/signin" element={
+              <PublicRoute>
+              <SignIn />
+              </PublicRoute>
+            } 
+            />
+
+            <Route 
+              path="/forgotpassword" element={
+              <PublicRoute>
+              <ForgotPassword />
+              </PublicRoute>
+            } 
+            />
+
+           
+          {/* Protected Routes - With Header/Footer */} 
+
+            <Route path="/" element={<ProtectedRoute> <AppLayout><Home /></AppLayout> </ProtectedRoute>}/>
+            <Route path="/" element={<ProtectedRoute> <AppLayout><Home /></AppLayout> </ProtectedRoute>}/>
+            <Route path="/" element={<ProtectedRoute> <AppLayout><Home /></AppLayout> </ProtectedRoute>}/>
+            <Route path="/" element={<ProtectedRoute> <AppLayout><Home /></AppLayout> </ProtectedRoute>}/>
+            <Route path="/" element={<ProtectedRoute> <AppLayout><Home /></AppLayout> </ProtectedRoute>}/>
+            <Route path="/" element={<ProtectedRoute> <AppLayout><Home /></AppLayout> </ProtectedRoute>}/>
+            <Route path="/" element={<ProtectedRoute> <AppLayout><Home /></AppLayout> </ProtectedRoute>}/>
+
+           
+           
+
+
+            
+            <Route path='/layout' element={Layout} />
             <Route path="/settings" element={<SettingsLayout />}>
               <Route index element={<Navigate to="profile" replace />} />
               <Route path="profile" element={<ProfileInfo />} />
@@ -52,19 +125,25 @@ function App() {
             <Route path="/fathers-role" element={<FathersRole />} />
             <Route path="/shop" element={<Shop />} />
             <Route path="/child-growth" element={<ChildGrowth />} />
-            <Route path="/hospitals" element={<Hospitals />} />
             <Route path="/nutrition" element={<Nutrition />} />
             <Route path="/premium" element={<Premium />} />
             <Route path="/community" element={<Community />} />
-            <Route path='/elderlyadvice' element={<ElderlyAdvice/>} />
-            <Route path='/monitoring' element={<Monitoring/>} />
+            {/* <Route path='/monitoring' element={<Monitoring/>} /> */}
             <Route path="/pregnancy-guide" element={<PregnancyGuide />} />
             <Route path="/babysittingpage" element={<BabysittingPage />} />
+            <Route path="/elderlyadvice" element={<BabyCareHub />} />
+            <Route path="/monitoringpage" element={<HospitalsHomePage />} /> 
+            <Route path="/hospitals" element={<HospitalsPage />} /> 
+            <Route path="/tracker" element={<PlaceholderPage title="Pregnancy Tracker" />} /> 
+            <Route path="/appointments" element={<PlaceholderPage title="Appointments" />} />           
+            <Route path='/baby-tracking' element={<BabyTrackingPage/>} />
+            <Route path='/babygrowthtracker' element={<BabyCard/>} />
+
 
             {/* <Route path='/pregnancy' element={<Pregnancy/>} /> */}
           </Routes>
         </main>
-        <Footer />
+        
       </div>
     
   );
