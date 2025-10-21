@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import './Shop.css';
 
 const Shop = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [cart, setCart] = useState([]);
   const [sortBy, setSortBy] = useState('featured');
+  const [searchQuery, setSearchQuery] = useState('');
 
   const categories = [
-    { id: 'all', name: 'All Products', icon: '🛍️' },
+    { id: 'all', name: 'All Products', icon: '🛍' },
     { id: 'pregnancy', name: 'Pregnancy Care', icon: '🤰' },
     { id: 'maternity', name: 'Maternity Wear', icon: '👚' },
     { id: 'newborn', name: 'Newborn (0-6M)', icon: '👶' },
@@ -16,7 +16,7 @@ const Shop = () => {
     { id: 'diapering', name: 'Diapering', icon: '🧷' },
     { id: 'bathing', name: 'Bathing & Care', icon: '🛁' },
     { id: 'toys', name: 'Toys & Learning', icon: '🧸' },
-    { id: 'safety', name: 'Safety', icon: '🛡️' },
+    { id: 'safety', name: 'Safety', icon: '🛡' },
     { id: 'nursery', name: 'Nursery', icon: '🚼' }
   ];
 
@@ -28,7 +28,7 @@ const Shop = () => {
       price: 3499,
       originalPrice: 4999,
       category: 'pregnancy',
-      image: '🛏️',
+      emoji: '🛏',
       rating: 4.8,
       reviews: 1247,
       description: 'U-shaped full body support pillow for comfortable sleep during pregnancy',
@@ -43,7 +43,7 @@ const Shop = () => {
       price: 1299,
       originalPrice: 1999,
       category: 'pregnancy',
-      image: '🎗️',
+      emoji: '🎗',
       rating: 4.5,
       reviews: 892,
       description: 'Adjustable support belt for back pain relief during pregnancy',
@@ -58,7 +58,7 @@ const Shop = () => {
       price: 2599,
       originalPrice: 3599,
       category: 'maternity',
-      image: '👗',
+      emoji: '👗',
       rating: 4.7,
       reviews: 567,
       description: '3-piece elegant maternity dress set for special occasions',
@@ -75,7 +75,7 @@ const Shop = () => {
       price: 1899,
       originalPrice: 2499,
       category: 'newborn',
-      image: '👕',
+      emoji: '👕',
       rating: 4.9,
       reviews: 1567,
       description: '7-piece organic cotton clothing set for newborns (0-3 months)',
@@ -90,7 +90,7 @@ const Shop = () => {
       price: 2899,
       originalPrice: 3899,
       category: 'newborn',
-      image: '👶',
+      emoji: '👶',
       rating: 4.8,
       reviews: 834,
       description: 'Ergonomic baby carrier with multiple carrying positions',
@@ -105,7 +105,7 @@ const Shop = () => {
       price: 2799,
       originalPrice: 3599,
       category: 'infant',
-      image: '🎪',
+      emoji: '🎪',
       rating: 4.7,
       reviews: 445,
       description: 'Multi-sensory activity gym with lights, music & detachable toys',
@@ -122,7 +122,7 @@ const Shop = () => {
       price: 5599,
       originalPrice: 7999,
       category: 'feeding',
-      image: '🍼',
+      emoji: '🍼',
       rating: 4.6,
       reviews: 678,
       description: 'Hospital-grade double electric breast pump with multiple settings',
@@ -137,7 +137,7 @@ const Shop = () => {
       price: 1499,
       originalPrice: 1999,
       category: 'feeding',
-      image: '🥛',
+      emoji: '🥛',
       rating: 4.8,
       reviews: 923,
       description: '5-piece anti-colic baby bottle set with natural latch nipple',
@@ -154,7 +154,7 @@ const Shop = () => {
       price: 2199,
       originalPrice: 2999,
       category: 'diapering',
-      image: '🎒',
+      emoji: '🎒',
       rating: 4.7,
       reviews: 512,
       description: 'Spacious multipurpose diaper bag with insulated pockets',
@@ -169,7 +169,7 @@ const Shop = () => {
       price: 499,
       originalPrice: 699,
       category: 'diapering',
-      image: '🧻',
+      emoji: '🧻',
       rating: 4.9,
       reviews: 2341,
       description: 'Hypoallergenic baby wipes with 99% water, gentle on skin',
@@ -186,7 +186,7 @@ const Shop = () => {
       price: 1599,
       originalPrice: 2199,
       category: 'bathing',
-      image: '🛁',
+      emoji: '🛁',
       rating: 4.6,
       reviews: 423,
       description: 'Anti-slip baby bath tub with built-in temperature indicator',
@@ -201,7 +201,7 @@ const Shop = () => {
       price: 1299,
       originalPrice: 1699,
       category: 'bathing',
-      image: '🧴',
+      emoji: '🧴',
       rating: 4.8,
       reviews: 667,
       description: 'Complete organic baby care kit with shampoo, oil & lotion',
@@ -218,7 +218,7 @@ const Shop = () => {
       price: 1899,
       originalPrice: 2499,
       category: 'toys',
-      image: '🎲',
+      emoji: '🎲',
       rating: 4.7,
       reviews: 334,
       description: 'Multi-functional activity cube with 6 sides of learning fun',
@@ -233,7 +233,7 @@ const Shop = () => {
       price: 899,
       originalPrice: 1299,
       category: 'toys',
-      image: '🧱',
+      emoji: '🧱',
       rating: 4.5,
       reviews: 278,
       description: '48-piece soft building blocks set for safe creative play',
@@ -250,7 +250,7 @@ const Shop = () => {
       price: 4899,
       originalPrice: 6499,
       category: 'safety',
-      image: '📹',
+      emoji: '📹',
       rating: 4.7,
       reviews: 892,
       description: 'HD video baby monitor with night vision and two-way audio',
@@ -265,7 +265,7 @@ const Shop = () => {
       price: 1799,
       originalPrice: 2399,
       category: 'safety',
-      image: '🛡️',
+      emoji: '🛡',
       rating: 4.6,
       reviews: 445,
       description: 'Complete baby proofing kit with corner guards, outlet covers',
@@ -282,7 +282,7 @@ const Shop = () => {
       price: 12599,
       originalPrice: 15999,
       category: 'nursery',
-      image: '🛏️',
+      emoji: '🛏',
       rating: 4.8,
       reviews: 223,
       description: '3-in-1 convertible crib that grows with your baby',
@@ -297,7 +297,7 @@ const Shop = () => {
       price: 8999,
       originalPrice: 11999,
       category: 'nursery',
-      image: '🪑',
+      emoji: '🪑',
       rating: 4.7,
       reviews: 156,
       description: 'Comfortable glider rocking chair for nursing and bonding',
@@ -312,7 +312,15 @@ const Shop = () => {
     ? products 
     : products.filter(product => product.category === activeCategory);
 
-  const sortedProducts = [...filteredProducts].sort((a, b) => {
+  const searchedProducts = searchQuery 
+    ? filteredProducts.filter(product => 
+        product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        product.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        product.brand.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    : filteredProducts;
+
+  const sortedProducts = [...searchedProducts].sort((a, b) => {
     switch(sortBy) {
       case 'price-low':
         return a.price - b.price;
@@ -327,168 +335,261 @@ const Shop = () => {
 
   const addToCart = (product) => {
     setCart([...cart, product]);
-    // You can add toast notification here
   };
 
   const getCategoryName = (categoryId) => {
     return categories.find(cat => cat.id === categoryId)?.name || '';
   };
 
+  const getDiscountPercentage = (price, originalPrice) => {
+    return Math.round((1 - price / originalPrice) * 100);
+  };
+
   return (
-    <div className="shop-page">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50">
       {/* Hero Section */}
-      <div className="shop-hero">
-        <div className="container">
-          <div className="hero-content">
-            <h1>Baby & Mother Care Products 🛍️</h1>
-            <p>Everything you need for pregnancy, newborns, and growing babies - carefully curated by experts</p>
-            <div className="hero-stats">
-              <div className="stat">
-                <strong>1000+</strong>
-                <span>Products</span>
+      <div className="relative bg-gradient-to-r from-purple-600 to-pink-600 py-16">
+        <div className="absolute inset-0 bg-black/10"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-white rounded-2xl shadow-lg mb-6">
+            <span className="text-3xl">🛍</span>
+          </div>
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            Baby & Mother Care Products
+          </h1>
+          <p className="text-xl text-white/90 max-w-3xl mx-auto mb-8">
+            Everything you need for pregnancy, newborns, and growing babies - carefully curated by experts
+          </p>
+          {/* <div className="flex justify-center gap-8">
+            <div className="text-center">
+              <div className="text-2xl font-bold text-white">1000+</div>
+              <div className="text-white/80">Products</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-white">50+</div>
+              <div className="text-white/80">Brands</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-white">1L+</div>
+              <div className="text-white/80">Happy Parents</div>
+            </div>
+          </div> */}
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Search Bar */}
+        <div className="mb-8">
+          <div className="relative max-w-2xl mx-auto">
+            <input
+              type="text"
+              placeholder="Search products, brands, categories..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-12 pr-4 py-4 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 shadow-lg"
+            />
+            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+              <svg className="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        {/* Shop Header */}
+        <div className="bg-white rounded-2xl shadow-xl p-6 mb-8 border border-gray-100">
+          <div className="flex flex-col lg:flex-row gap-6 justify-between items-start lg:items-center">
+            {/* Categories Filter */}
+            <div className="flex-1">
+              <div className="flex flex-wrap gap-2">
+                {categories.map(category => (
+                  <button
+                    key={category.id}
+                    onClick={() => setActiveCategory(category.id)}
+                    className={`flex items-center gap-2 px-4 py-3 rounded-xl font-medium transition-all duration-200 ${
+                      activeCategory === category.id
+                        ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    <span className="text-lg">{category.icon}</span>
+                    <span>{category.name}</span>
+                  </button>
+                ))}
               </div>
-              <div className="stat">
-                <strong>50+</strong>
-                <span>Brands</span>
-              </div>
-              <div className="stat">
-                <strong>1L+</strong>
-                <span>Happy Parents</span>
+            </div>
+
+            {/* Sort and Cart */}
+            <div className="flex items-center gap-4">
+              <select 
+                value={sortBy} 
+                onChange={(e) => setSortBy(e.target.value)}
+                className="px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+              >
+                <option value="featured">Featured</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="rating">Customer Rating</option>
+              </select>
+
+              <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-3 rounded-xl font-semibold flex items-center gap-2 shadow-lg">
+                <span>🛒</span>
+                <span>{cart.length} items</span>
+                <span>•</span>
+                <span>₹{cart.reduce((total, item) => total + item.price, 0).toLocaleString()}</span>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="shop-content">
-        <div className="container">
-          {/* Shop Header with Filters */}
-          <div className="shop-header">
-            <div className="filter-section">
-              <div className="categories-filter">
-                {categories.map(category => (
-                  <button
-                    key={category.id}
-                    className={`category-btn ${activeCategory === category.id ? 'active' : ''}`}
-                    onClick={() => setActiveCategory(category.id)}
-                  >
-                    <span className="category-icon">{category.icon}</span>
-                    <span className="category-name">{category.name}</span>
-                  </button>
-                ))}
-              </div>
-              
-              <div className="sort-filter">
-                <select 
-                  value={sortBy} 
-                  onChange={(e) => setSortBy(e.target.value)}
-                  className="sort-select"
-                >
-                  <option value="featured">Featured</option>
-                  <option value="price-low">Price: Low to High</option>
-                  <option value="price-high">Price: High to Low</option>
-                  <option value="rating">Customer Rating</option>
-                </select>
-              </div>
-            </div>
-            
-            <div className="cart-summary">
-              <span className="cart-icon">🛒</span>
-              <span className="cart-count">{cart.length} items</span>
-              <span className="cart-total">
-                ₹{cart.reduce((total, item) => total + item.price, 0)}
-              </span>
-            </div>
-          </div>
+        {/* Products Info */}
+        <div className="mb-8">
+          <h2 className="text-3xl font-bold text-gray-900 mb-2">
+            {getCategoryName(activeCategory)}
+          </h2>
+          <p className="text-gray-600">
+            Showing {sortedProducts.length} products
+            {searchQuery && ` for "${searchQuery}"`}
+          </p>
+        </div>
 
-          {/* Products Count */}
-          <div className="products-info">
-            <h2>{getCategoryName(activeCategory)}</h2>
-            <p>Showing {sortedProducts.length} products</p>
-          </div>
-
-          {/* Products Grid */}
-          <div className="products-grid">
-            {sortedProducts.map(product => (
-              <div key={product.id} className="product-card">
-                <div className="product-image">
-                  <span className="product-emoji">{product.image}</span>
-                  <div className="discount-badge">
-                    {Math.round((1 - product.price / product.originalPrice) * 100)}% OFF
-                  </div>
-                  <div className="brand-tag">{product.brand}</div>
+        {/* Products Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
+          {sortedProducts.map(product => (
+            <div
+              key={product.id}
+              className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 overflow-hidden group"
+            >
+              {/* Product Image */}
+              <div className="relative h-48 bg-gradient-to-br from-purple-50 to-pink-50 flex items-center justify-center overflow-hidden">
+                <div className="text-6xl transform group-hover:scale-110 transition-transform duration-300">
+                  {product.emoji}
                 </div>
-                
-                <div className="product-info">
-                  <h3 className="product-name">{product.name}</h3>
-                  <p className="product-description">{product.description}</p>
-                  
-                  <div className="product-features">
-                    {product.features.map((feature, index) => (
-                      <span key={index} className="feature-tag">✓ {feature}</span>
-                    ))}
-                  </div>
-                  
-                  <div className="product-rating">
-                    <div className="rating-stars">
-                      {'⭐'.repeat(Math.floor(product.rating))}
-                      <span className="rating-value">{product.rating}</span>
-                    </div>
-                    <span className="reviews">({product.reviews.toLocaleString()} reviews)</span>
-                  </div>
-                  
-                  <div className="delivery-info">
-                    <span className="delivery-badge">{product.delivery}</span>
-                    <span className="stock-info">{product.stock} in stock</span>
-                  </div>
-                  
-                  <div className="product-pricing">
-                    <span className="current-price">₹{product.price.toLocaleString()}</span>
-                    <span className="original-price">₹{product.originalPrice.toLocaleString()}</span>
-                    <span className="savings">
-                      Save ₹{(product.originalPrice - product.price).toLocaleString()}
+                <div className="absolute top-3 right-3 bg-gradient-to-r from-pink-500 to-red-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
+                  {getDiscountPercentage(product.price, product.originalPrice)}% OFF
+                </div>
+                <div className="absolute top-3 left-3 bg-purple-600 text-white px-2 py-1 rounded-lg text-xs font-semibold">
+                  {product.brand}
+                </div>
+              </div>
+
+              {/* Product Info */}
+              <div className="p-4">
+                <h3 className="font-bold text-gray-900 mb-2 line-clamp-2 h-12">
+                  {product.name}
+                </h3>
+                <p className="text-gray-600 text-sm mb-3 line-clamp-2">
+                  {product.description}
+                </p>
+
+                {/* Features */}
+                <div className="flex flex-wrap gap-1 mb-3">
+                  {product.features.slice(0, 2).map((feature, index) => (
+                    <span
+                      key={index}
+                      className="bg-purple-50 text-purple-700 px-2 py-1 rounded-lg text-xs font-medium"
+                    >
+                      ✓ {feature}
                     </span>
-                  </div>
-                  
-                  <button 
-                    className="add-to-cart-btn"
-                    onClick={() => addToCart(product)}
-                  >
-                    <span className="cart-icon">🛒</span>
-                    Add to Cart
-                  </button>
+                  ))}
                 </div>
-              </div>
-            ))}
-          </div>
 
-          {/* Shop Benefits */}
-          <div className="shop-benefits">
-            <div className="benefit-card">
-              <div className="benefit-icon">🚚</div>
-              <h4>Free Shipping</h4>
-              <p>On orders above ₹999</p>
+                {/* Rating */}
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="flex items-center gap-1">
+                    <span className="text-yellow-400">⭐</span>
+                    <span className="font-semibold text-gray-900">{product.rating}</span>
+                  </div>
+                  <span className="text-gray-500 text-sm">
+                    ({product.reviews.toLocaleString()} reviews)
+                  </span>
+                </div>
+
+                {/* Delivery & Stock */}
+                <div className="flex justify-between items-center mb-3">
+                  <span className="bg-green-100 text-green-800 px-2 py-1 rounded-lg text-xs font-semibold">
+                    {product.delivery}
+                  </span>
+                  <span className="text-green-600 text-sm font-semibold">
+                    {product.stock} in stock
+                  </span>
+                </div>
+
+                {/* Pricing */}
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="text-2xl font-bold text-purple-600">
+                    ₹{product.price.toLocaleString()}
+                  </span>
+                  <span className="text-gray-500 line-through">
+                    ₹{product.originalPrice.toLocaleString()}
+                  </span>
+                  <span className="text-green-600 text-sm font-semibold">
+                    Save ₹{(product.originalPrice - product.price).toLocaleString()}
+                  </span>
+                </div>
+
+                {/* Add to Cart Button */}
+                <button
+                  onClick={() => addToCart(product)}
+                  className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white py-3 rounded-xl font-semibold transition-all duration-200 transform hover:-translate-y-0.5 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                >
+                  <span>🛒</span>
+                  Add to Cart
+                </button>
+              </div>
             </div>
-            <div className="benefit-card">
-              <div className="benefit-icon">↩️</div>
-              <h4>Easy Returns</h4>
-              <p>30-day return policy</p>
+          ))}
+        </div>
+
+        {/* Empty State - FIXED */}
+        {sortedProducts.length === 0 && (
+          <div className="text-center py-16">
+            <div className="w-24 h-24 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
+              <span className="text-3xl">😔</span>
             </div>
-            <div className="benefit-card">
-              <div className="benefit-icon">🛡️</div>
-              <h4>Quality Assured</h4>
-              <p>All products tested & certified</p>
-            </div>
-            <div className="benefit-card">
-              <div className="benefit-icon">💝</div>
-              <h4>Expert Curated</h4>
-              <p>Selected by pediatricians</p>
-            </div>
-            <div className="benefit-card">
-              <div className="benefit-icon">🏥</div>
-              <h4>Doctor Approved</h4>
-              <p>Medically safe products</p>
-            </div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">No products found</h3>
+            <p className="text-gray-600 mb-6">
+              {searchQuery 
+                ? `No products found for "${searchQuery}"`
+                : 'No products available in this category'
+              }
+            </p>
+            <button
+              onClick={() => { setSearchQuery(''); setActiveCategory('all'); }}
+              className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all duration-200 font-semibold"
+            >
+              Clear Filters
+            </button>
+          </div>
+        )}
+
+        {/* Shop Benefits */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
+          <div className="text-center p-4 rounded-xl hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-600 hover:text-white transition-all duration-300 group">
+            <div className="text-3xl mb-3 group-hover:scale-110 transition-transform">🚚</div>
+            <h4 className="font-bold mb-1">Free Shipping</h4>
+            <p className="text-sm opacity-80">On orders above ₹999</p>
+          </div>
+          <div className="text-center p-4 rounded-xl hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-600 hover:text-white transition-all duration-300 group">
+            <div className="text-3xl mb-3 group-hover:scale-110 transition-transform">↩</div>
+            <h4 className="font-bold mb-1">Easy Returns</h4>
+            <p className="text-sm opacity-80">30-day return policy</p>
+          </div>
+          <div className="text-center p-4 rounded-xl hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-600 hover:text-white transition-all duration-300 group">
+            <div className="text-3xl mb-3 group-hover:scale-110 transition-transform">🛡</div>
+            <h4 className="font-bold mb-1">Quality Assured</h4>
+            <p className="text-sm opacity-80">All products tested & certified</p>
+          </div>
+          <div className="text-center p-4 rounded-xl hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-600 hover:text-white transition-all duration-300 group">
+            <div className="text-3xl mb-3 group-hover:scale-110 transition-transform">💝</div>
+            <h4 className="font-bold mb-1">Expert Curated</h4>
+            <p className="text-sm opacity-80">Selected by pediatricians</p>
+          </div>
+          <div className="text-center p-4 rounded-xl hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-600 hover:text-white transition-all duration-300 group">
+            <div className="text-3xl mb-3 group-hover:scale-110 transition-transform">🏥</div>
+            <h4 className="font-bold mb-1">Doctor Approved</h4>
+            <p className="text-sm opacity-80">Medically safe products</p>
           </div>
         </div>
       </div>

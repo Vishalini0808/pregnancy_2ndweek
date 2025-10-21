@@ -2,7 +2,7 @@ import React from 'react';
 
 const HeroSection = () => {
   return (
-    <section className="relative bg-gradient-to-br from-blue-50 via-white to-indigo-50 min-h-screen flex items-center overflow-hidden ">
+    <section className="relative bg-gradient-to-br from-blue-50 via-white to-indigo-50 min-h-screen flex items-center overflow-hidden px-25">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-100/50 via-transparent to-transparent"></div>
       
@@ -11,13 +11,13 @@ const HeroSection = () => {
       <div className="absolute bottom-1/3 right-10 w-96 h-96 bg-pink-300/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
       <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-blue-300/20 rounded-full blur-3xl animate-pulse delay-500"></div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 ">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-19 items-center">
           {/* Text Content */}
-          <div className="text-center lg:text-left space-y-4">
+          <div className="text-center lg:text-left space-y-6">
            
 
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight ">
               Your Complete{' '}
              <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent bg-size-300 animate-gradient">
               Pregnancy & Parenting
@@ -29,14 +29,14 @@ const HeroSection = () => {
               Companion
             </h1>
             
-            <p className="text-xl lg:text-2xl text-gray-600 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-light">
+            <p className="text-xl lg:text-1xl text-gray-600 font-semibold leading-relaxed max-w-2xl mx-auto  lg:mx-0 ">
               Nurturing Mothers, Growing Futures - Your 5-Year Parenting Companion. 
               From bump to brilliance - Your trusted guide through pregnancy and beyond.
             </p>
             
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <button className="group relative bg-gradient-to-r from-purple-600 to-pink-600 text-white px-10 py-5 rounded-2xl font-semibold text-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-300 transform hover:-translate-y-1 shadow-2xl hover:shadow-3xl overflow-hidden">
+              <button className="group relative bg-gradient-to-r from-purple-600 to-pink-600 text-white px-10 py-3.5 rounded-2xl font-semibold text-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-300 transform hover:-translate-y-1 shadow-2xl hover:shadow-3xl overflow-hidden">
                 <span className="relative z-10 flex items-center gap-3">
                   Start Your Journey
                   <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -46,7 +46,7 @@ const HeroSection = () => {
                 <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
               </button>
               
-              <button className="group border-2 border-gray-300 text-gray-700 px-10 py-5 rounded-2xl font-semibold text-lg hover:border-purple-400 hover:bg-purple-50 transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl">
+              <button className="group border-2 border-gray-300 text-gray-700 px-10 py-3.5 rounded-2xl font-semibold text-lg hover:border-purple-400 hover:bg-purple-50 transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl">
                 <span className="flex items-center gap-3">
                   <svg className="w-5 h-5 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
@@ -56,27 +56,6 @@ const HeroSection = () => {
               </button>
             </div>
             
-            {/* Trust Indicators */}
-            {/* <div className="flex flex-wrap justify-center lg:justify-start gap-8 pt-8 border-t border-gray-200/60">
-              {[
-                { number: '5+', label: 'Years Guidance', icon: '📅' },
-                { number: '100k+', label: 'Happy Parents', icon: '👨‍👩‍👧‍👦' },
-                { number: '24/7', label: 'Expert Support', icon: '💬' },
-                { number: '99%', label: 'Success Rate', icon: '⭐' }
-              ].map((item, index) => (
-                <div key={index} className="text-center group cursor-pointer">
-                  <div className="flex items-center gap-2">
-                    <span className="text-2xl group-hover:scale-110 transition-transform">{item.icon}</span>
-                    <div>
-                      <div className="text-2xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors">
-                        {item.number}
-                      </div>
-                      <div className="text-gray-600 text-sm font-medium">{item.label}</div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div> */}
           </div>
 
           {/* Visual Content */}
@@ -100,25 +79,7 @@ const HeroSection = () => {
               <div className="absolute -z-10 bottom-10 -right-10 w-40 h-40 bg-blue-200/40 rounded-full blur-2xl"></div>
             </div>
 
-            {/* Feature Cards */}
-            {/* <div className="grid grid-cols-2 gap-4 mt-8">
-              {[
-                { icon: '👶', title: 'Baby Tracking', desc: 'Growth milestones' },
-                { icon: '🍎', title: 'Nutrition', desc: 'Personalized plans' },
-                { icon: '💤', title: 'Sleep Guide', desc: 'Better rest' },
-                { icon: '🏥', title: 'Health Check', desc: 'Expert advice' }
-              ].map((feature, index) => (
-                <div key={index} className="bg-white/80 backdrop-blur-sm p-4 rounded-2xl shadow-lg border border-white/20 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl">{feature.icon}</span>
-                    <div>
-                      <div className="font-semibold text-gray-900 text-sm">{feature.title}</div>
-                      <div className="text-xs text-gray-600">{feature.desc}</div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div> */}
+           
           </div>
         </div>
       </div>

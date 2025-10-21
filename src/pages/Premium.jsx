@@ -21,7 +21,7 @@ const Premium = () => {
       period: 'per 3 months',
       popular: false
     },
-    monthly: {
+        monthly: {
       name: 'Monthly Plan',
       price: '₹99',
       originalPrice: '₹499',

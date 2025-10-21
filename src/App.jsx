@@ -33,6 +33,7 @@ import { HospitalsPage } from './components/HospitalsPage';
 import { PlaceholderPage } from './components/PlaceholderPage';
 import BabyTrackingPage from './pages/BabyTrackingPage';
 import BabyCard from './pages/BabyCard';
+import ScrollToTop from './components/ScrollToTop';
 
 
 
@@ -68,6 +69,8 @@ function App() {
       <div className="App">
         {/* <Header /> */}
         <main>
+
+          <ScrollToTop/>
 
           <Routes>
 
