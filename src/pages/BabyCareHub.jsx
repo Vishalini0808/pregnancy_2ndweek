@@ -1,21 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-// Components (you'll need to create these or adjust imports)
+// Components
 const CareCard = ({ title, subtitle, icon, gradient, onClick }) => (
-  <>
-    <div
-      className={`${gradient} rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer border border-white/20`}
-      onClick={onClick}
-    >
-      <div className="flex items-start gap-4">
-        <div className="text-3xl">{icon}</div>
-        <div className="flex-1">
-          <h3 className="text-white font-bold text-lg mb-2">{title}</h3>
-          <p className="text-white/90 text-sm">{subtitle}</p>
-        </div>
+  <div
+    className={`${gradient} rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer border border-white/20`}
+    onClick={onClick}
+  >
+    <div className="flex items-start gap-4">
+      <div className="text-3xl">{icon}</div>
+      <div className="flex-1">
+        <h3 className="text-white font-bold text-lg mb-2">{title}</h3>
+        <p className="text-white/90 text-sm">{subtitle}</p>
       </div>
     </div>
-  </>
+  </div>
 );
 
 const Modal = ({ isOpen, onClose, title, children }) => {
@@ -41,23 +39,210 @@ const Modal = ({ isOpen, onClose, title, children }) => {
   );
 };
 
+// Video Card Component with Advanced Effects
+const VideoCard = ({ video, type = 'landscape', index, onVideoClick }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const videoRef = useRef(null);
+
+  const handleClick = () => {
+    if (onVideoClick) {
+      onVideoClick(index);
+    } else {
+      if (videoRef.current) {
+        if (videoRef.current.paused) {
+          videoRef.current.play();
+        } else {
+          videoRef.current.pause();
+        }
+      }
+    }
+  };
+
+  return (
+    <div
+      className="group relative bg-white rounded-2xl shadow-2xl overflow-hidden hover:shadow-3xl transition-all duration-500 transform hover:scale-[1.02] cursor-pointer border border-gray-200/50"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onClick={handleClick}
+    >
+      <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl -m-0.5" />
+      
+      <div
+        className={`relative ${
+          type === 'landscape' ? 'aspect-video' : 'aspect-[9/16]'
+        } bg-gradient-to-br from-gray-900 to-gray-700 overflow-hidden`}
+      >
+        <video
+          ref={videoRef}
+          src={video.videoUrl}
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          muted
+          playsInline
+          loop
+          preload="metadata"
+        />
+        
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-all duration-500" />
+        
+        <div className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${
+          isHovered ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
+        }`}>
+          <div className="bg-white/20 backdrop-blur-lg rounded-full p-4 transform group-hover:scale-110 transition-transform duration-300">
+            <div className="bg-white rounded-full p-3 shadow-2xl">
+              <span className="text-2xl text-gray-800">▶</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="absolute top-3 right-3 bg-black/80 text-white px-2 py-1 rounded-lg text-xs font-semibold backdrop-blur-sm">
+          {video.duration}
+        </div>
+
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-600/30">
+          <div 
+            className="h-full bg-gradient-to-r from-purple-500 to-pink-500 transition-all duration-1000 ease-out"
+            style={{ width: isHovered ? '100%' : '0%' }}
+          />
+        </div>
+      </div>
+
+      <div className="p-5 relative z-10 bg-white">
+        <div className="flex items-start gap-3">
+          <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg">
+            {video.channel.charAt(0)}
+          </div>
+          
+          <div className="flex-1 min-w-0">
+            <h3 className="font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-purple-600 transition-colors duration-300">
+              {video.title}
+            </h3>
+            <p className="text-gray-600 text-sm font-medium mb-1">{video.channel}</p>
+            <div className="flex items-center text-gray-500 text-sm space-x-2">
+              <span>{video.views}</span>
+              <span>•</span>
+              <span>{video.time}</span>
+            </div>
+          </div>
+        </div>
+
+        <div className={`flex items-center justify-between mt-3 pt-3 border-t border-gray-100 transition-all duration-300 ${
+          isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'
+        }`}>
+          <button className="flex items-center gap-2 text-gray-600 hover:text-purple-600 transition-colors duration-200">
+            <span className="text-lg">👍</span>
+            <span className="text-sm font-medium">{video.likes}</span>
+          </button>
+          <button className="flex items-center gap-2 text-gray-600 hover:text-purple-600 transition-colors duration-200">
+            <span className="text-lg">💬</span>
+            <span className="text-sm font-medium">{video.comments}</span>
+          </button>
+          <button className="flex items-center gap-2 text-gray-600 hover:text-purple-600 transition-colors duration-200">
+            <span className="text-lg">↗</span>
+            <span className="text-sm font-medium">Share</span>
+          </button>
+        </div>
+      </div>
+
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+    </div>
+  );
+};
+
+// Shorts Card with Advanced Effects
+const ShortsCard = ({ short, index, onShortsClick }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const videoRef = useRef(null);
+
+  return (
+    <div 
+      className="group relative flex-shrink-0 w-44 cursor-pointer"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onClick={() => onShortsClick(index)}
+    >
+      <div className="relative aspect-[9/16] bg-gradient-to-br from-gray-900 to-gray-700 rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:scale-105">
+        <video
+          ref={videoRef}
+          src={short.videoUrl}
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          muted
+          playsInline
+          loop
+          preload="metadata"
+        />
+        
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-transparent" />
+        
+        <div className="absolute top-3 right-3">
+          <div className="bg-gradient-to-r from-red-500 to-pink-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-2xl flex items-center gap-1">
+            <span className="text-lg">▶</span>
+            <span>Shorts</span>
+          </div>
+        </div>
+
+        <div className="absolute bottom-0 left-0 right-0 p-4">
+          <h4 className="text-white font-bold text-sm mb-2 line-clamp-2 drop-shadow-2xl">
+            {short.title}
+          </h4>
+          <p className="text-white/80 text-xs mb-3 drop-shadow-lg">{short.views}</p>
+          
+          <div className="flex items-center justify-between text-white/90">
+            <div className="flex items-center gap-1 text-xs">
+              <span>👍</span>
+              <span>{short.likes}</span>
+            </div>
+            <div className="flex items-center gap-1 text-xs">
+              <span>💬</span>
+              <span>{short.comments}</span>
+            </div>
+          </div>
+        </div>
+
+        <div className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${
+          isHovered ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
+        }`}>
+          <div className="bg-white/20 backdrop-blur-lg rounded-full p-3 transform group-hover:scale-110 transition-transform duration-300">
+            <div className="bg-white rounded-full p-4 shadow-2xl">
+              <span className="text-2xl text-gray-800">▶</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="absolute top-3 left-3 flex flex-col gap-1">
+          {[1, 2, 3, 4, 5, 6, 7].map((dot) => (
+            <div
+              key={dot}
+              className={`w-1.5 h-1.5 rounded-full transition-all duration-500 ${
+                dot === index + 1 
+                  ? 'bg-white scale-125' 
+                  : 'bg-white/30'
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="absolute inset-0 bg-gradient-to-r from-purple-500/30 to-pink-500/30 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+    </div>
+  );
+};
+
 // Main Component
 export default function BabyCareHub() {
   const [selectedTopic, setSelectedTopic] = useState(null);
-  // const [currentTip, setCurrentTip] = useState(0);
-  // const [sweetMoment, setSweetMoment] = useState('');
+  const [currentTip, setCurrentTip] = useState(0);
   const [activeSection, setActiveSection] = useState('care-hub');
 
-  // Video data states
+  // Video states
   const [currentShortIndex, setCurrentShortIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [muted, setMuted] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [currentVideoType, setCurrentVideoType] = useState('shorts');
   
   const containerRef = useRef(null);
   const videoRefs = useRef([]);
-  const landscapeVideoRefs = useRef([]);
 
   const topics = [ 
     { 
@@ -78,14 +263,14 @@ export default function BabyCareHub() {
       id: 'emotional-bonding', 
       title: 'Emotional Bonding', 
       subtitle: 'Build connection through love and comfort.', 
-      icon: '❤', 
+      icon: '❤️', 
       gradient: 'bg-gradient-to-br from-pink-400 to-rose-400' 
     }, 
     { 
       id: 'health-safety', 
       title: 'Health & Safety', 
       subtitle: 'Simple ways to keep your baby safe & comfortable.', 
-      icon: '🛡', 
+      icon: '🛡️', 
       gradient: 'bg-gradient-to-br from-purple-400 to-indigo-400' 
     }, 
     { 
@@ -111,91 +296,135 @@ export default function BabyCareHub() {
     "A calm baby begins with a calm parent." 
   ]; 
 
-  // Video data
+  // Enhanced Video Data
   const landscapeVideos = [
     {
       id: 1,
-      videoUrl: 'v1.mp4',
-      views: '61K views',
-      time: '2 weeks ago'
+      videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-mother-and-baby-sitting-on-the-bed-44517-large.mp4',
+      title: 'Complete Baby Care Guide for New Parents',
+      channel: 'Parenting Pro',
+      views: '1.2M views',
+      time: '2 weeks ago',
+      duration: '15:30',
+      likes: '45K',
+      comments: '2.3K'
     },
     {
       id: 2,
-      videoUrl: 'v2.mp4',
-      views: '11K views',
-      time: '1 month ago'
+      videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-baby-playing-with-a-rattle-44513-large.mp4',
+      title: 'Newborn Sleep Patterns & Safe Sleeping',
+      channel: 'Baby Sleep Expert',
+      views: '856K views',
+      time: '1 month ago',
+      duration: '12:45',
+      likes: '32K',
+      comments: '1.8K'
     },
     {
       id: 3,
-      videoUrl: 'v3.mp4',
+      videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-baby-sitting-on-the-floor-playing-44515-large.mp4',
+      title: 'Breastfeeding & Bottle Feeding Techniques',
+      channel: 'Pediatric Nutrition',
       views: '2.7M views',
-      time: '3 days ago'
+      time: '3 days ago',
+      duration: '18:20',
+      likes: '78K',
+      comments: '4.2K'
     }
   ];
 
   const shortsVideos = [
     {
       id: 1,
-      videoUrl: 'vs1.mp4',
-      views: '1.2M views',
-      likes: '45K'
+      videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-baby-playing-with-a-rattle-44513-large.mp4',
+      title: 'Quick Baby Massage for Better Sleep',
+      views: '2.1M views',
+      likes: '145K',
+      comments: '8.2K'
     },
     {
       id: 2,
-      videoUrl: 'vs2.mp4',
-      views: '890K views',
-      likes: '32K',
+      videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-baby-sitting-on-the-floor-playing-44515-large.mp4',
+      title: 'Fun Tummy Time Activities',
+      views: '1.8M views',
+      likes: '98K',
+      comments: '5.4K'
     },
     {
       id: 3,
-      videoUrl: 'vs3.mp4',
-      views: '2.1M views',
-      likes: '78K',
+      videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-mother-and-baby-sitting-on-the-bed-44517-large.mp4',
+      title: 'Bath Time Safety Tips',
+      views: '3.2M views',
+      likes: '210K',
+      comments: '12.3K'
     },
-     {
+    {
       id: 4,
-      videoUrl: 'vs4.mp4',
-      views: '1.2M views',
-      likes: '45K',
+      videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-baby-playing-with-a-rattle-44513-large.mp4',
+      title: 'How to Soothe a Crying Baby',
+      views: '4.5M views',
+      likes: '320K',
+      comments: '18.7K'
     },
     {
       id: 5,
-      videoUrl: 'vs5.mp4',
-      views: '890K views',
-      likes: '32K',
+      videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-baby-sitting-on-the-floor-playing-44515-large.mp4',
+      title: 'Diaper Changing Pro Tips',
+      views: '1.9M views',
+      likes: '112K',
+      comments: '6.8K'
     },
     {
       id: 6,
-      videoUrl: 'vs6.mp4',
-      views: '2.1M views',
-      likes: '78K',
+      videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-mother-and-baby-sitting-on-the-bed-44517-large.mp4',
+      title: 'Baby Development Milestones',
+      views: '2.8M views',
+      likes: '167K',
+      comments: '9.4K'
     },
-      {
+    {
       id: 7,
-      videoUrl: 'vs7.mp4',
-      views: '2.1M views',
-      likes: '78K',
+      videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-baby-playing-with-a-rattle-44513-large.mp4',
+      title: 'Comfortable Feeding Positions',
+      views: '1.5M views',
+      likes: '89K',
+      comments: '4.9K'
     }
   ];
 
   const mixVideos = [
     {
       id: 1,
-      videoUrl: 'v4.mp4',
-      views: '4K views',
-      time: '1 week ago'
+      videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-mother-and-baby-sitting-on-the-bed-44517-large.mp4',
+      title: 'Complete Baby Proofing Guide',
+      channel: 'Home Safety Expert',
+      views: '456K views',
+      time: '1 week ago',
+      duration: '22:15',
+      likes: '23K',
+      comments: '1.2K'
     },
     {
       id: 2,
-      videoUrl: 'v5.mp4',
-      views: '1.2M views',
-      time: '2 days ago'
+      videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-baby-playing-with-a-rattle-44513-large.mp4',
+      title: 'First Foods & Baby-Led Weaning',
+      channel: 'Baby Nutritionist',
+      views: '1.8M views',
+      time: '2 days ago',
+      duration: '16:40',
+      likes: '67K',
+      comments: '3.8K'
     },
     {
       id: 3,
-      videoUrl: 'v6.mp4',
+      videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-baby-sitting-on-the-floor-playing-44515-large.mp4',
+      title: 'Educational Playtime Activities',
+      channel: 'Early Learning',
       views: 'Updated today',
-      time: 'Just now'
+      time: 'Just now',
+      duration: '14:25',
+      likes: '12K',
+      comments: '856'
     }
   ];
 
@@ -206,117 +435,30 @@ export default function BabyCareHub() {
     return () => clearInterval(timer); 
   }, []); 
 
-  // Video functions
-  const handleCardVideoClick = (index) => {
-    const videoElement = landscapeVideoRefs.current[index];
-    if (videoElement) {
-      if (videoElement.paused) {
-        videoElement.play();
-      } else {
-        videoElement.pause();
-      }
-    }
+  // Video Handlers
+  const handleShortsClick = (index) => {
+    setCurrentShortIndex(index);
+    setCurrentVideoType('shorts');
+    setIsFullscreen(true);
+    setIsPlaying(true);
+    document.body.style.overflow = 'hidden';
   };
 
-  const scrollToVideo = (index) => {
-    if (isFullscreen && containerRef.current) {
-      containerRef.current.scrollTo({
-        top: index * containerRef.current.clientHeight,
-        behavior: 'smooth'
-      });
-    }
-  };
-
-  const handleWheel = (e) => {
-    if (!isFullscreen || currentVideoType !== 'shorts') return;
-    e.preventDefault();
-    const delta = e.deltaY;
-    
-    if (delta > 0) {
-      const nextIndex = (currentShortIndex + 1) % shortsVideos.length;
-      scrollToVideo(nextIndex);
-    } else if (delta < 0) {
-      const prevIndex = currentShortIndex === 0 ? shortsVideos.length - 1 : currentShortIndex - 1;
-      scrollToVideo(prevIndex);
-    }
-  };
-
-  const [touchStart, setTouchStart] = useState(0);
-  
-  const handleTouchStart = (e) => {
-    if (!isFullscreen || currentVideoType !== 'shorts') return;
-    setTouchStart(e.touches[0].clientY);
-  };
-
-  const handleTouchEnd = (e) => {
-    if (!isFullscreen || currentVideoType !== 'shorts') return;
-    const touchEnd = e.changedTouches[0].clientY;
-    const diff = touchStart - touchEnd;
-
-    if (Math.abs(diff) > 50) {
-      if (diff > 0) {
-        const nextIndex = (currentShortIndex + 1) % shortsVideos.length;
-        scrollToVideo(nextIndex);
-      } else {
-        const prevIndex = currentShortIndex === 0 ? shortsVideos.length - 1 : currentShortIndex - 1;
-        scrollToVideo(prevIndex);
-      }
-    }
-  };
-
-  const handleScroll = () => {
-    if (!isFullscreen || !containerRef.current || currentVideoType !== 'shorts') return;
-    const container = containerRef.current;
-    const scrollTop = container.scrollTop;
-    const containerHeight = container.clientHeight;
-    const newIndex = Math.round(scrollTop / containerHeight);
-    
-    if (newIndex !== currentShortIndex) {
-      if (videoRefs.current[currentShortIndex]) {
-        videoRefs.current[currentShortIndex].pause();
-      }
-      
-      setCurrentShortIndex(newIndex);
-      setIsPlaying(true);
-    }
-  };
-
-  useEffect(() => {
-    if (isFullscreen && currentVideoType === 'shorts') {
-      const currentVideo = videoRefs.current[currentShortIndex];
-      
-      if (currentVideo && isPlaying) {
-        currentVideo.play().catch(error => {
-          console.log('Auto-play prevented:', error);
-        });
-      }
-
-      videoRefs.current.forEach((video, index) => {
-        if (video && index !== currentShortIndex) {
-          video.pause();
-        }
-      });
-    }
-  }, [currentShortIndex, isPlaying, isFullscreen, currentVideoType]);
-
-  const handleVideoEnd = () => {
-    if (currentVideoType === 'shorts') {
-      const nextIndex = (currentShortIndex + 1) % shortsVideos.length;
-      scrollToVideo(nextIndex);
-    }
+  const toggleFullscreen = () => {
+    setIsFullscreen(false);
+    setCurrentVideoType('shorts');
+    document.body.style.overflow = 'auto';
+    setIsPlaying(false);
   };
 
   const togglePlayPause = () => {
-    if (currentVideoType === 'shorts') {
-      const currentVideo = videoRefs.current[currentShortIndex];
-      if (currentVideo) {
-        if (isPlaying) {
-          currentVideo.pause();
-        } else {
-          currentVideo.play();
-        }
-        setIsPlaying(!isPlaying);
+    if (videoRefs.current[currentShortIndex]) {
+      if (isPlaying) {
+        videoRefs.current[currentShortIndex].pause();
+      } else {
+        videoRefs.current[currentShortIndex].play();
       }
+      setIsPlaying(!isPlaying);
     }
   };
 
@@ -324,94 +466,54 @@ export default function BabyCareHub() {
     setMuted(!muted);
   };
 
-  const toggleFullscreen = (index, type = 'shorts') => {
-    if (isFullscreen) {
-      setIsFullscreen(false);
-      setCurrentVideoType('shorts');
-      document.body.style.overflow = 'auto';
-    } else {
-      if (type === 'shorts') {
-        setCurrentShortIndex(index);
-        setCurrentVideoType('shorts');
+  const handleScroll = (e) => {
+    if (!isFullscreen) return;
+    e.preventDefault();
+    
+    const delta = e.deltaY;
+    if (Math.abs(delta) > 50) {
+      if (delta > 0) {
+        const nextIndex = (currentShortIndex + 1) % shortsVideos.length;
+        setCurrentShortIndex(nextIndex);
+      } else {
+        const prevIndex = currentShortIndex === 0 ? shortsVideos.length - 1 : currentShortIndex - 1;
+        setCurrentShortIndex(prevIndex);
       }
-      setIsFullscreen(true);
-      setIsPlaying(true);
-      document.body.style.overflow = 'hidden';
     }
   };
 
-  // Modal content renderer
-  const renderModalContent = (topicId) => {
-    return <div>Modal Content for {topicId}</div>;
+  const handleVideoEnd = () => {
+    const nextIndex = (currentShortIndex + 1) % shortsVideos.length;
+    setCurrentShortIndex(nextIndex);
   };
 
-  // Video Card Components
-const VideoCard = ({ video, type = 'landscape', index, handleCardVideoClick, landscapeVideoRefs }) => (
-  <>
-    <div
-      className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] cursor-pointer"
-      onClick={() => handleCardVideoClick(index)}
-    >
-      <div
-        className={`relative ${type === 'landscape' ? 'aspect-video' : 'aspect-[9/16]'} bg-gray-800`}
-      >
-        <video
-          ref={(el) => (landscapeVideoRefs.current[index] = el)}
-          src={video.videoUrl}
-          className="w-full h-full object-cover"
-          muted
-          playsInline
-          loop
-        />
-        <div className="absolute inset-0 bg-black/0 hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
-          <div className="text-white text-4xl opacity-0 hover:opacity-100 transition-opacity duration-300">
-            ▶
-          </div>
-        </div>
-      </div>
+  useEffect(() => {
+    if (isFullscreen && videoRefs.current[currentShortIndex]) {
+      const currentVideo = videoRefs.current[currentShortIndex];
+      
+      if (isPlaying) {
+        currentVideo.play().catch(console.error);
+      } else {
+        currentVideo.pause();
+      }
 
-      <div className="p-4">
-        <h3 className="font-semibold text-gray-800 mb-1 line-clamp-2">{video.title}</h3>
-        <p className="text-gray-600 text-sm mb-1">{video.channel}</p>
-        <div className="flex items-center text-gray-500 text-sm">
-          <span>{video.views}</span>
-          {video.time && <span className="mx-1">•</span>}
-          <span>{video.time}</span>
-        </div>
-      </div>
-    </div>
-  </>
-);
-
-
-  const ShortsCard = ({ short, index }) => (
-    <div 
-      className="flex-shrink-0 w-36 cursor-pointer"
-      onClick={() => toggleFullscreen(index, 'shorts')}
-    >
-      <div className="relative aspect-[9/16] bg-gray-800 rounded-xl overflow-hidden">
-        <video
-          ref={el => videoRefs.current[index] = el}
-          src={short.videoUrl}
-          className="w-full h-full object-cover"
-          muted={muted}
-          playsInline
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-        <div className="absolute bottom-2 left-2 right-2">
-          <h4 className="text-white font-semibold text-sm line-clamp-2 mb-1">{short.title}</h4>
-          <p className="text-white/80 text-xs">{short.views}</p>
-        </div>
-        <div className="absolute top-2 right-2">
-          <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
-            <span className="text-white text-xs font-bold">S</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+      videoRefs.current.forEach((video, index) => {
+        if (video && index !== currentShortIndex) {
+          video.pause();
+          video.currentTime = 0;
+        }
+      });
+    }
+  }, [currentShortIndex, isPlaying, isFullscreen]);
 
   const currentTopic = topics.find((t) => t.id === selectedTopic);
+
+  const renderModalContent = (topicId) => {
+    return <div className="p-8 text-center">
+      <h3 className="text-2xl font-bold text-gray-800 mb-4">Content Coming Soon!</h3>
+      <p className="text-gray-600">We're preparing amazing content for: {topicId}</p>
+    </div>;
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50">
@@ -648,7 +750,7 @@ const VideoCard = ({ video, type = 'landscape', index, handleCardVideoClick, lan
                         
                         <div className="flex items-start gap-3 p-4 bg-gradient-to-r from-pink-50 to-orange-50 rounded-xl border border-pink-200">
                           <div className="w-10 h-10 bg-pink-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <span className="text-pink-600 text-lg">🗣</span>
+                            <span className="text-pink-600 text-lg">🗣️</span>
                           </div>
                           <div>
                             <div className="font-semibold text-gray-900">Vocalization</div>
@@ -831,6 +933,12 @@ const VideoCard = ({ video, type = 'landscape', index, handleCardVideoClick, lan
               ))}
             </div>
 
+            {/* Daily Tips */}
+            <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl p-8 text-white text-center mb-12">
+              <h3 className="text-2xl font-bold mb-4">💡 Daily Parenting Tip</h3>
+              <p className="text-xl font-medium">{dailyTips[currentTip]}</p>
+            </div>
+
             {/* Footer Quote */}
             <div className="text-center py-8">
               <p className="text-gray-600 italic">
@@ -841,47 +949,96 @@ const VideoCard = ({ video, type = 'landscape', index, handleCardVideoClick, lan
         )}
 
         {activeSection === 'videos' && (
-          <div className="space-y-12">
-            {/* First Row - 3 Landscape Video Cards */}
-            <section>
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-bold text-gray-900">Recommended Videos</h2>
+          <div className="space-y-16">
+            {/* Hero Section */}
+            <section className="text-center py-8">
+              <h1 className="text-5xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
+                Baby Care Video Guides
+              </h1>
+              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                Professional parenting advice, traditional wisdom, and modern techniques in beautiful, engaging videos
+              </p>
+            </section>
+
+            {/* Recommended Videos */}
+            <section className="relative">
+              <div className="flex items-center justify-between mb-8">
+                <div>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-2">Featured Guides</h2>
+                  <p className="text-gray-600">Essential baby care techniques from experts</p>
+                </div>
+                <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-full font-semibold">
+                  {landscapeVideos.length} Videos
+                </div>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {landscapeVideos.map((video, index) => (
-                  <VideoCard key={video.id} video={video} type="landscape" index={index} />
+                  <VideoCard 
+                    key={video.id} 
+                    video={video} 
+                    type="landscape" 
+                    index={index}
+                  />
                 ))}
               </div>
             </section>
 
-            {/* Second Row - Shorts Horizontal Scroll */}
-            <section>
-              <div className="flex items-center justify-between mb-6">
-                <div className="flex items-center space-x-3">
-                  <h2 className="text-2xl font-bold text-gray-900">Shorts</h2>
+            {/* Shorts Section */}
+            <section className="relative">
+              <div className="flex items-center justify-between mb-8">
+                <div className="flex items-center gap-4">
+                  <div className="bg-gradient-to-r from-red-500 to-pink-500 text-white px-4 py-1 rounded-full font-bold text-sm">
+                    SHORTS
+                  </div>
+                  <div>
+                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Quick Tips & Tricks</h2>
+                    <p className="text-gray-600">60-second baby care hacks</p>
+                  </div>
+                </div>
+                <div className="text-gray-500 font-semibold">
+                  {shortsVideos.length} Shorts
                 </div>
               </div>
 
               {/* Shorts Horizontal Scroll */}
               <div className="relative">
-                <div className="flex space-x-4 overflow-x-auto pb-4 hide-scrollbar">
+                <div className="flex space-x-6 overflow-x-auto pb-8 hide-scrollbar">
                   {shortsVideos.map((short, index) => (
-                    <ShortsCard key={short.id} short={short} index={index} />
+                    <ShortsCard 
+                      key={short.id} 
+                      short={short} 
+                      index={index}
+                      onShortsClick={handleShortsClick}
+                    />
                   ))}
                 </div>
+                
+                {/* Scroll Indicator */}
+                <div className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gradient-to-l from-white to-transparent w-20 h-full pointer-events-none" />
               </div>
             </section>
 
-            {/* Third Row - 3 Mix Video Cards */}
+            {/* Mix Section */}
             <section>
-              <div className="flex items-center justify-between mb-6">
-                <div className="flex items-center space-x-3">
-                  <h2 className="text-2xl font-bold text-gray-900">Mix</h2>
+              <div className="flex items-center justify-between mb-8">
+                <div>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-2">Learning Series</h2>
+                  <p className="text-gray-600">Comprehensive baby development guides</p>
+                </div>
+                <div className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-2 rounded-full font-semibold">
+                  Mixed Content
                 </div>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {mixVideos.map((video, index) => (
-                  <VideoCard key={video.id} video={video} type="landscape" index={index + landscapeVideos.length} />
+                  <VideoCard 
+                    key={video.id} 
+                    video={video} 
+                    type="landscape" 
+                    index={index + landscapeVideos.length}
+                  />
                 ))}
               </div>
             </section>
@@ -900,115 +1057,125 @@ const VideoCard = ({ video, type = 'landscape', index, handleCardVideoClick, lan
         </Modal>
       )}
 
-      {/* Fullscreen Shorts Player */}
-      {isFullscreen && currentVideoType === 'shorts' && (
-        <div className="fixed inset-0 bg-black z-50">
-          <div 
-            ref={containerRef}
-            className="h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth hide-scrollbar"
-            onScroll={handleScroll}
-            onWheel={handleWheel}
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
-          >
-            {shortsVideos.map((short, index) => (
-              <div 
-                key={short.id} 
-                className="h-screen w-full snap-start flex justify-center items-center bg-black relative"
-              >
-                <video
-                  ref={el => videoRefs.current[index] = el}
-                  src={short.videoUrl}
-                  className="w-full h-full object-contain"
-                  muted={muted}
-                  loop={false}
-                  playsInline
-                  onEnded={handleVideoEnd}
-                  onClick={togglePlayPause}
-                />
-
-                {/* YouTube-like Controls */}
-                <div className="absolute top-0 left-0 right-0 z-50 bg-gradient-to-b from-black/50 to-transparent p-4">
-                  <div className="flex justify-between items-center">
-                    <button
-                      onClick={() => toggleFullscreen(0)}
-                      className="text-white p-2 rounded-full hover:bg-white/20 transition-colors"
-                    >
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                    </button>
-                    <div className="text-white font-semibold">Shorts</div>
-                    <div className="w-6"></div>
-                  </div>
+      {/* Enhanced Fullscreen Shorts Player */}
+      {isFullscreen && (
+        <div 
+          className="fixed inset-0 bg-black z-50"
+          onWheel={handleScroll}
+        >
+          <div className="h-screen flex flex-col">
+            {/* Header */}
+            <div className="absolute top-0 left-0 right-0 z-50 bg-gradient-to-b from-black/70 to-transparent p-6">
+              <div className="flex justify-between items-center">
+                <button
+                  onClick={toggleFullscreen}
+                  className="text-white p-3 rounded-full hover:bg-white/20 transition-colors duration-300"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+                <div className="text-white font-bold text-lg bg-white/20 backdrop-blur-lg px-4 py-2 rounded-full">
+                  Shorts • {currentShortIndex + 1}/{shortsVideos.length}
                 </div>
-
-                <div className="absolute bottom-20 left-4 text-white max-w-[65%] z-50">
-                  <div className="flex items-center space-x-2 mb-2">
-                    <div className="w-8 h-8 bg-gray-400 rounded-full"></div>
-                    <span className="font-semibold">{short.username}</span>
-                  </div>
-                  <h3 className="text-lg font-semibold mb-2 drop-shadow-lg">{short.title}</h3>
-                  <p className="text-sm opacity-90 mb-2 drop-shadow-lg">{short.description}</p>
-                  <div className="flex items-center space-x-2">
-                    <span className="text-sm opacity-90">{short.views}</span>
-                    <span className="text-blue-300 text-sm font-medium">{short.hashtag}</span>
-                  </div>
-                </div>
-
-                <div className="absolute bottom-20 right-4 flex flex-col gap-6 items-center z-50">
-                  <button className="flex flex-col items-center gap-1 text-white">
-                    <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
-                      <span className="text-2xl">❤</span>
-                    </div>
-                    <span className="text-xs font-medium mt-1">{short.likes}</span>
-                  </button>
-                  
-                  <button className="flex flex-col items-center gap-1 text-white">
-                    <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
-                      <span className="text-2xl">💬</span>
-                    </div>
-                    <span className="text-xs font-medium mt-1">Comment</span>
-                  </button>
-
-                  <button 
-                    className="flex flex-col items-center gap-1 text-white"
-                    onClick={toggleMute}
-                  >
-                    <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
-                      <span className="text-2xl">{muted ? '🔇' : '🔊'}</span>
-                    </div>
-                  </button>
-                </div>
-
-                <div className="absolute top-1/2 right-4 transform -translate-y-1/2 flex flex-col gap-3 z-50">
-                  {shortsVideos.map((_, i) => (
-                    <div 
-                      key={i}
-                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                        i === currentShortIndex ? 'bg-white scale-150' : 'bg-white/30'
-                      }`}
-                    />
-                  ))}
-                </div>
-
-                {!isPlaying && (
-                  <div 
-                    className="absolute inset-0 flex items-center justify-center bg-black/40 cursor-pointer z-40"
-                    onClick={togglePlayPause}
-                  >
-                    <div className="text-white text-8xl bg-black/50 rounded-full w-24 h-24 flex items-center justify-center">
-                      ▶
-                    </div>
-                  </div>
-                )}
+                <div className="w-12"></div>
               </div>
-            ))}
-          </div>
+            </div>
 
-          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white/70 text-sm z-50">
-            <div className="flex items-center gap-2 bg-black/50 px-4 py-2 rounded-full">
-              <span>↑ Scroll to navigate • {currentShortIndex + 1}/{shortsVideos.length}</span>
+            {/* Video Container */}
+            <div className="flex-1 flex items-center justify-center relative">
+              {shortsVideos.map((short, index) => (
+                <div
+                  key={short.id}
+                  className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ${
+                    index === currentShortIndex ? 'opacity-100' : 'opacity-0'
+                  }`}
+                >
+                  <video
+                    ref={el => videoRefs.current[index] = el}
+                    src={short.videoUrl}
+                    className="w-full h-full object-contain"
+                    muted={muted}
+                    loop={false}
+                    playsInline
+                    onEnded={handleVideoEnd}
+                    onClick={togglePlayPause}
+                  />
+                </div>
+              ))}
+
+              {/* Play/Pause Overlay */}
+              {!isPlaying && (
+                <div 
+                  className="absolute inset-0 flex items-center justify-center bg-black/40 cursor-pointer z-30"
+                  onClick={togglePlayPause}
+                >
+                  <div className="bg-white/20 backdrop-blur-lg rounded-full p-6">
+                    <div className="bg-white rounded-full p-8">
+                      <span className="text-6xl text-gray-800">▶</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Video Info */}
+              <div className="absolute bottom-24 left-6 text-white max-w-md z-40">
+                <h3 className="text-2xl font-bold mb-3 drop-shadow-2xl">{shortsVideos[currentShortIndex]?.title}</h3>
+                <div className="flex items-center gap-4 text-white/80">
+                  <span>{shortsVideos[currentShortIndex]?.views}</span>
+                  <span>•</span>
+                  <span>{shortsVideos[currentShortIndex]?.likes} likes</span>
+                </div>
+              </div>
+
+              {/* Right Side Actions */}
+              <div className="absolute bottom-24 right-6 flex flex-col gap-6 items-center z-40">
+                <button className="flex flex-col items-center gap-2 text-white">
+                  <div className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-lg flex items-center justify-center hover:bg-white/20 transition-all duration-300 hover:scale-110">
+                    <span className="text-2xl">❤️</span>
+                  </div>
+                  <span className="text-sm font-medium mt-1">{shortsVideos[currentShortIndex]?.likes}</span>
+                </button>
+                
+                <button className="flex flex-col items-center gap-2 text-white">
+                  <div className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-lg flex items-center justify-center hover:bg-white/20 transition-all duration-300 hover:scale-110">
+                    <span className="text-2xl">💬</span>
+                  </div>
+                  <span className="text-sm font-medium mt-1">Comment</span>
+                </button>
+
+                <button 
+                  className="flex flex-col items-center gap-2 text-white"
+                  onClick={toggleMute}
+                >
+                  <div className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-lg flex items-center justify-center hover:bg-white/20 transition-all duration-300 hover:scale-110">
+                    <span className="text-2xl">{muted ? '🔇' : '🔊'}</span>
+                  </div>
+                  <span className="text-sm font-medium mt-1">{muted ? 'Unmute' : 'Mute'}</span>
+                </button>
+              </div>
+
+              {/* Progress Dots */}
+              <div className="absolute top-1/2 right-8 transform -translate-y-1/2 flex flex-col gap-3 z-40">
+                {shortsVideos.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setCurrentShortIndex(i)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      i === currentShortIndex 
+                        ? 'bg-white scale-125' 
+                        : 'bg-white/30 hover:bg-white/50'
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Footer */}
+            <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-white/80 text-sm z-40">
+              <div className="bg-black/50 backdrop-blur-lg px-6 py-3 rounded-full">
+                <span>Scroll or use buttons to navigate • {currentShortIndex + 1}/{shortsVideos.length}</span>
+              </div>
             </div>
           </div>
         </div>
